@@ -1,4 +1,4 @@
-from package.core import core
+from lam.core import core
 
 def gaussElim(mat):
     assert isinstance(mat,core.AlgArray)
