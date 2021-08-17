@@ -1,8 +1,11 @@
 from lam.core import core
 
-def gaussElim(mat):
-    assert isinstance(mat,core.AlgArray)
-    lis = [str(mat), ]
+def gaussElim(matrix):
+    assert isinstance(matrix,core.Algmat)
+    mat = matrix.copy()
+    t = core.Step()
+    t.matList.append(mat.copy())
+    process = core.Process(t)
 
     for rowInd in range(mat.shape[0]-1):
         flag = False
@@ -12,10 +15,15 @@ def gaussElim(mat):
             for i in range(rowInd, mat.shape[0]):
                 if mat[i,j] != 0:
                     flag = True
+                    t = mat.copy()
                     mat.swapTran(i, rowInd)
-                    lis.append(str(mat))
+                    if not (t == mat).all():
+                        #经过变换后，没有变化则不计入结果
+                        t = core.Step()
+                        t.matList.append(mat.copy())
+                        process.stepList.append(t)
                     colInd = j
-                    #记录不为的元素的所在列
+                    #记录不为0的元素的所在列
                     break
             if flag:
                 break
@@ -24,17 +32,16 @@ def gaussElim(mat):
         if flag:
             for i in range(rowInd+1, mat.shape[0]):
                 k = -mat[i,colInd]/mat[rowInd,colInd]
+                t = mat.copy()
                 mat.plusTran(i, rowInd, k)
-                lis.append(str(mat))
+                if not (t == mat).all():
+                    t = core.Step()
+                    t.matList.append(mat.copy())
+                    process.stepList.append(t)
         else:
             continue
 
-    return lis
+    return process
 
-if __name__ == '__main__':
-    a = '1,3,4,1;2,3,4,1;3,4,5,1'
-    b = core.interpret(a)
-    c = gaussElim(b)
-    for i in c:
-        print(i)
+
 
