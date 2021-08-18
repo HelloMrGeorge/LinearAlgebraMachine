@@ -1,5 +1,4 @@
 import numpy as np
-from numpy.matrixlib import mat
 
 class Algmat(np.ndarray):
 #初等变换部分
@@ -27,16 +26,27 @@ class Algmat(np.ndarray):
         mat = np.delete(mat,n,1)
         return mat
 
+#输出latex格式的矩阵
+    def htmlStr(self):
+        content = ''
+        for i in range(self.shape[0]):
+            content = content + '&'.join(map(str, self[i])) + '\\\\'
+        htmlS = '$\\begin{bmatrix}' + content + '\\end{bmatrix}$'
+        return htmlS
+
+
 class Step:
 #一般环节对象
 
     def __init__(self):
         self.matList = []
-        self.coeList = []
         return
     
     def __str__(self):
-        return str(list(map(str, self.matList)))
+        content = ''
+        for i in self.matList:
+            content = content + i.htmlStr()
+        return content
 
     def print(self):
         for i in self.matList:
@@ -50,7 +60,24 @@ class Process:
         assert isinstance(step, Step)
         self.stepList = [step, ]
 
+    def __str__(self):
+        content = ''
+        for i in self.stepList:
+            content = content + str(i)
+        return content
+
     def print(self):
         for i in self.stepList:
             i.print()
         return
+
+class LapStep(Step):
+#拉普拉斯展开过程对象
+    def __init__(self):
+        super(self).__init__()
+        self.ceoList = []
+        return
+    
+    def __str__(self):
+        self.matList = np.array(self.matList)
+        return str(self.matList)

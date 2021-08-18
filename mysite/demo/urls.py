@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.demo, name='demo'),
     path('answer', views.answer, name='answer'),
+    path('demo3', views.demo, name='demo3'),
     path('GEM', views.gaussElim),
     path('GEMans', views.guassAns, name='GEMans'),
 ]

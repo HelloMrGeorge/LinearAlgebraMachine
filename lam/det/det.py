@@ -7,7 +7,7 @@ def det(mat):
 
 def laplaceExpand(matrix, m, axis=0):
     '''
-    用Laplace定理展开行列式
+    单步Laplace定理展开行列式
 
     Parameters: matrix: Algmat
                     待展开的矩阵
@@ -16,11 +16,11 @@ def laplaceExpand(matrix, m, axis=0):
                 axis： int
                     决定展开的轴，0表示按行展开，1表示按列展开
     Returns:    process: Process
-                    返回过程对象
+                    返回单步计算的过程对象
     '''
     assert isinstance(matrix, core.Algmat)
     mat = matrix.copy()
-    step = core.Step()
+    step = core.LapStep()
     for i in range(mat.shape[axis]):
         ind = [i,i]
         ind[axis] = m
@@ -28,3 +28,19 @@ def laplaceExpand(matrix, m, axis=0):
         step.coeList.append(mat[ind])
 
     return core.Process(step)
+
+def laplaceDet(matrix):
+    '''
+    方法仍在建设中
+    用Laplace定理展开行列式至三阶，然后求值
+
+    Parameters: matrix: Algmat
+                    待求行列式的矩阵
+    Returns:    process: Process
+                    返回计算过程的过程对象
+    '''
+    assert isinstance(matrix, core.Algmat)
+    mat = matrix.copy()
+    if mat.shape[0] <= 3:
+        pass
+    return
