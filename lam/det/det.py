@@ -1,6 +1,9 @@
-from lam.core import gausselim, core
+from lam.core import gausselim, ndmatrix
 import numpy
-
+'''
+det.py
+    实现计算行列式等相关功能
+'''
 def det(mat):
     #直接调用numpy求行列式的值
     return numpy.linalg.det(mat)
@@ -18,16 +21,16 @@ def laplaceExpand(matrix, m, axis=0):
     Returns:    process: Process
                     返回单步计算的过程对象
     '''
-    assert isinstance(matrix, core.Algmat)
+    assert isinstance(matrix, ndmatrix.Algmat)
     mat = matrix.copy()
-    step = core.LapStep()
+    step = ndmatrix.LapStep()
     for i in range(mat.shape[axis]):
         ind = [i,i]
         ind[axis] = m
         step.matList.append(mat.cofactorMat(ind[0],ind[1]))
         step.coeList.append(mat[ind])
 
-    return core.Process(step)
+    return ndmatrix.Process(step)
 
 def laplaceDet(matrix):
     '''
@@ -39,7 +42,7 @@ def laplaceDet(matrix):
     Returns:    process: Process
                     返回计算过程的过程对象
     '''
-    assert isinstance(matrix, core.Algmat)
+    assert isinstance(matrix, ndmatrix.Algmat)
     mat = matrix.copy()
     if mat.shape[0] <= 3:
         pass
