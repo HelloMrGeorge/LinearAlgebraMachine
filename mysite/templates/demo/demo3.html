@@ -33,9 +33,11 @@
       </div>
       <button type="submit" class="btn btn-primary">提交</button>
     </form>
-    
-    {% block answer %}
-    {% endblock %}
+    <p>
+      {% block answer %}
+      {% endblock %}
+    </p>
+
   
     <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
