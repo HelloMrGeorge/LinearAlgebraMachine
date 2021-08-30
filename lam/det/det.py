@@ -1,13 +1,16 @@
 from lam.core import gausselim, ndmatrix
 import numpy
 '''
-det.py
-    实现计算行列式等相关功能
+实现计算行列式等相关功能
 '''
 def det(mat):
     #直接调用numpy求行列式的值
     return numpy.linalg.det(mat)
 
+
+
+
+#后续内容不建议使用
 def laplaceExpand(matrix, m, axis=0):
     '''
     单步Laplace定理展开行列式

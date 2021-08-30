@@ -1,7 +1,7 @@
 from lam.core import ndmatrix
 import numpy as np
 '''
-处理输出和输入数据的方法
+处理输入数据的模块
 '''
 def interpret(matrix) -> ndmatrix.NumMatrix:
     mat = matrix.split(';')
