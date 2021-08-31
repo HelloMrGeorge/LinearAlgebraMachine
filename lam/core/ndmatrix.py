@@ -24,13 +24,6 @@ class NumMatrix(np.ndarray, output.htmlOutPut):
         self[n] = t
         return
 
-#行列式部分       
-    def cofactorMat(self,m,n):  
-        #求(m,n)元的余子矩阵，注意开头是序号0
-        mat = np.delete(self,m,0)
-        mat = np.delete(mat,n,1)
-        return mat
-
 #输出latex格式的矩阵
     def htmlStr(self):
         text = ''
