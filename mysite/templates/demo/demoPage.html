@@ -5,39 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-    <title>Demo 1</title>
+    <title>Demo 3</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
   </head>
   <body>
 
     <div class="='col-sm-4">
-      <h1>矩阵求逆</h1>
+      {% block statement %}
+        <h1>
+          演示高斯消元法
+        </h1>
+      {% endblock %}
     </div>
 
-    <input  class="form-control" style="width: 10cm">
-    <button id="submit">提交</button>
+    {% block form %}
+      <form class="form-inline" action="{% url 'answer' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" id="exampleInputAmount" name='matrix' placeholder="1,1,2;1,3,4;2,3,4">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">提交</button>
+        <p>
+          注意:每行用分号隔开，每个元素用逗号隔开
+        </p>
+      </form>
+    {% endblock %}
 
-    <div class="='col-sm-4">
-      <h2>显示答案</h2>
-    </div>
+
+
   
     <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script>
-      $("#submit").on(
-        'click',
-        function(){
-          $.get(
-            "{% url 'answer' %}",
-            {matrix: $("input").val()},
-            function(data,status){
-              $("h2").text(data.matrix);
-              console.log("succeed");
-            },
-          );
-        }
-      );
-    </script>
-    
   </body>
 </html>
