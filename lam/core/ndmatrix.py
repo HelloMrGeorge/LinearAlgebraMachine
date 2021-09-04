@@ -1,6 +1,7 @@
 import numpy as np
+from lam.core import output
 
-class NumMatrix(np.ndarray):
+class NumMatrix(np.ndarray, output.htmlOutPut):
     '''
     数值矩阵类，定义存储元素为数值类型的矩阵容器。
     下面定义了三种初等变换，求余子矩阵，网页输出等方法。
@@ -23,17 +24,11 @@ class NumMatrix(np.ndarray):
         self[n] = t
         return
 
-#行列式部分       
-    def cofactorMat(self,m,n):  
-        #求(m,n)元的余子矩阵，注意开头是序号0
-        mat = np.delete(self,m,0)
-        mat = np.delete(mat,n,1)
-        return mat
-
 #输出latex格式的矩阵
-    def htmlOutPut(self):
-        content = ''
+    def htmlStr(self):
+        text = ''
         for i in range(self.shape[0]):
-            content = content + '&'.join(map(str, self[i])) + '\\\\'
-        content = '$\\begin{bmatrix}' + content + '\\end{bmatrix}$'
-        return content
+            text = text + '&'.join(map(str, self[i])) + '\\\\'
+        text = '\\begin{bmatrix}' + text + '\\end{bmatrix}'
+        return text
+
