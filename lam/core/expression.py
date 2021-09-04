@@ -36,3 +36,36 @@ class Polynomial(list, output.htmlOutPut):
         for x in self:
             text = text + output.htmlStr(x)
         return text
+
+class Equation(output.htmlOutPut):
+    '''
+    创建数学元素——等式对象的类
+    '''
+    def __init__(self, left, right) -> None:
+        self.left = left
+        self.right = right
+
+    def htmlStr(self) -> str:
+        text = output.htmlStr(self.left) + '=' + output.htmlStr(self.right)
+        return text
+
+    def htmlStrAlign(self) -> str:
+        '''
+        带对齐符的网页文本输出
+        '''
+        text = output.htmlStr(self.left) + '&=' + output.htmlStr(self.right)
+        return text
+
+class EquGroup(list, output.htmlOutPut):
+    '''
+    创建数学元素——方程组对象的类， 它是等式对象的容器
+    '''
+    def append(self, __object: Equation) -> None:
+        return super().append(__object)
+
+    def htmlStr(self) -> str:
+        text = ''
+        for x in self:
+            text = text + x.htmlStrAlign() + '\\\\'
+        text = text[:-2]    #取消最后两个反斜杠，避免换行
+        return text    

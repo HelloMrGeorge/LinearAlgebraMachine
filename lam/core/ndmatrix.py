@@ -29,5 +29,6 @@ class NumMatrix(np.ndarray, output.htmlOutPut):
         text = ''
         for i in range(self.shape[0]):
             text = text + '&'.join(map(str, self[i])) + '\\\\'
-        text = '$\\begin{bmatrix}' + text + '\\end{bmatrix}$'
+        text = '\\begin{bmatrix}' + text + '\\end{bmatrix}'
         return text
+

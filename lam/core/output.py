@@ -17,7 +17,7 @@ def htmlStr(obj) -> str:
     if isinstance(obj, htmlOutPut):
         text = obj.htmlStr()
     else:
-        text = f'${str(obj)}$'
+        text = str(obj)
     return text
 
 #以下内容不建议继续使用
