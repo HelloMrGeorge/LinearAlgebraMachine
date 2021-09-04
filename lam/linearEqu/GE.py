@@ -2,6 +2,9 @@ from lam.core import ndmatrix, output
 import numpy as np
 
 def GEbyStep(matrix: ndmatrix.NumMatrix):
+    '''
+    按步执行的Gauss消元法
+    '''
     mat = matrix.copy()
     #检查是否呈阶梯形
     for rowInd in range(mat.shape[0]):
@@ -27,8 +30,19 @@ def GEbyStep(matrix: ndmatrix.NumMatrix):
                     return mat
     return
                 
-    
-    
+def GJEbyStep(matrix: ndmatrix.NumMatrix):
+    '''
+    按步执行的Gauss-Jordan消元法
+    项目施工中
+    '''
+    t = GEbyStep(matrix)
+    flag = False    #标记Guass消元法是否完成
+    if t != None and flag == False:
+        mat = t.copy()
+        return mat
+    elif t == None and flag == False:
+        flag = True
+    return
 
 class GEIterator():
 
