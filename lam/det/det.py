@@ -26,7 +26,7 @@ def det(mat):
 
 def laplaceExpand(matrix: Determinant, m: int = 1, coefficient  = 1, axis=0) -> expression.Polynomial:
     '''
-    单步Laplace定理展开行列式
+    用Laplace定理对行列式的一行或一列展开
 
     Parameters: matrix: Determinant
                     待展开的矩阵

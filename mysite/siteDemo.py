@@ -1,1 +1,1 @@
-import demo.views
+import demo.tests
