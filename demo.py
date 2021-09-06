@@ -13,4 +13,5 @@ a = sp.Matrix([
 a = determinant.Deter(a)
 b = laplaceexpand.lapexp_expr(a)
 b = laplaceexpand.lapexp_expr(b)
-print(b)
+b = laplaceexpand.lapexp_expr(b)
+print(b.doit())
