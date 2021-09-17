@@ -8,7 +8,7 @@ class EquationSolve(reduction.MatrixReduction):
         super().__init__(matrix)
 
         #x,equ存储方程的变量和符号化的矩阵
-        self.x = zeros(self.matrix.shape[1], 1) 
+        self.x = zeros(self.matrix.shape[1]-1, 1) 
         self.equ_list = zeros(self.matrix.shape[0], 1)
         return
 
@@ -22,10 +22,10 @@ class EquationSolve(reduction.MatrixReduction):
     
     def symbolize_equ(self) -> None:
         #将增广矩阵符号化，变为易读的公式形式
-        for i in range(self.matrix.shape[1]):
+        for i in range(self.matrix.shape[1]-1):
             self.x[i] = symbols(f'x_{i+1}')
         for i in range(self.matrix.shape[0]):
-            left = self.x.dot(self.matrix[i, :])
+            left = self.x.dot(self.matrix[i, :-1])
             self.equ_list[i] = Eq(left ,self.matrix[i,-1] ,evaluate=False)
         
         return  self.course.append(self.equ_list.copy())

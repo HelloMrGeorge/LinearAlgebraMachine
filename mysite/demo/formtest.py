@@ -1,12 +1,16 @@
 import sympy as sp
+from sympy.core.numbers import Rational
 from lam.determinant import course
 from lam.printing import latextext
 
 def formtest() -> str:
+    a = sp.symbols('a')
+    b = sp.symbols('b')
+    c = sp.symbols('c')
     mat = sp.Matrix([
-        [1,2,3,4],
-        [0,3,5,2],
-        [9,8,7,3],
+        [1,2,3,a],
+        [0,3,c,2],
+        [9,b,Rational(3,7),3],
         [7,8,2,1],
     ])
     co = course.det_course(mat)
@@ -14,5 +18,5 @@ def formtest() -> str:
     for x in co['expand']:
         text = text + '$' + latextext.latex(x, mat_delim = '|') + '$' + r'<br>'
     for x in co['figure']:
-        text = text + latextext.latex(x) + r'<br>'
+        text = text + '$' + latextext.latex(x) + '$' + r'<br>'
     return text
