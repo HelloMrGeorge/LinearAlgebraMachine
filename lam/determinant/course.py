@@ -6,6 +6,9 @@ from lam.core.matrixexpression import decompose_mono
 
 
 def det_course(matrix: sp.MatrixBase):
+    '''
+    det_course函数接受矩阵对象的参数，并将返回一个存储矩阵表达式的字典，键'expand'表示行列式的展开过程，它的值是一个列表，列表的每个元素都是矩阵对象；键'figure'表示行列式展开到三阶后直接求值的过程，它的值是个列表，每个元素存储的都是矩阵表达式。列表中的数学元素都可以用latex函数打印。
+    '''
     course = {}
     course['expand'] = lap_expand_course(matrix)
     expr = course['expand'][-1]
