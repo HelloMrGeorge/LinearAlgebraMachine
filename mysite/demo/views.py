@@ -7,8 +7,8 @@ from django.http import JsonResponse
 # lampy_dir = Path(__file__).resolve().parent.parent.parent
 # sys.path.append(str(lampy_dir))
 
-from lam.core import input, expression
-from lam.det import det
+# from lam.core import input, expression
+# from lam.det import det
 from lam.linearequation import outtext
 
 from .formtest import formtest
@@ -34,10 +34,11 @@ def testView(request):
     return render(request, 'demo/testView.html', {'text': text})
 
 def testAnswer(request):
-    mat = request.POST.get('matrix')
-    mat = input.Interpreter.intepretAs('Determinant', mat)
-    mono = expression.Monomial(mat)
-    ans = expression.Polynomial()
-    ans.append(mono)
-    ans = det.LEbyStep(ans)
-    return render(request, 'demo/testAnswer.html', {'answer': ans.htmlStr()})
+    # mat = request.POST.get('matrix')
+    # mat = input.Interpreter.intepretAs('Determinant', mat)
+    # mono = expression.Monomial(mat)
+    # ans = expression.Polynomial()
+    # ans.append(mono)
+    # ans = det.LEbyStep(ans)
+    # return render(request, 'demo/testAnswer.html', {'answer': ans.htmlStr()})
+    pass
