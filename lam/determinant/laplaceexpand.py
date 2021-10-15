@@ -1,4 +1,3 @@
-from mpmath.functions.functions import arg
 import sympy as sp
 from sympy.matrices.expressions.matadd import MatAdd
 
