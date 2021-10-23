@@ -1,4 +1,5 @@
 import sympy as sp
+from lam.determinant import cofactor, laplaceexpand
 
 class Deter(sp.matrices.dense.MutableDenseMatrix):
     '''
@@ -9,12 +10,13 @@ class Deter(sp.matrices.dense.MutableDenseMatrix):
     在打印latex文本时请使用关键字参数mat_delim = '|'，以实现双竖线输出。
     '''
 
-    def cofactor_subdet(self, i, j):
-        #返回(i,j)元素的代数余子式，它已将符号乘入矩阵中
-        mat = self.minor_submatrix(i, j)
-        expr = sp.Mul((-1)**(i+j) ,mat)
-        return expr
+    def cofactor_submatrix(self, i, j):
+        return cofactor.cofactor_submatrix(self, i, j)
+    
+    def lap_expand(self, n: int = 1, coe = 1, axis: int = 0):
+        return laplaceexpand.lap_expand(self, n, coe, axis)
+    
 
-
-
-        
+def is_singular(mat: sp.MatrixBase) -> bool:
+    assert mat.is_square
+    return bool(mat.det() != 0)
