@@ -13,12 +13,14 @@ from lam.linearequation import outtext
 
 from .formtest import formtest
 # Create your views here.
+import json
 
 def demo(request):
     return render(request, 'demo/demoPage.html')
 
 def answer(request):
-    return render(request, 'demo/answerPage.html')
+    return render(request,'demo/answerPage.html')
+
 
 def gaussElim(request):
     return render(request, 'demo/GEMPage.html')
