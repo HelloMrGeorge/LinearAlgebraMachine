@@ -14,4 +14,6 @@ def slvdeter(a:str):
     json_str = json.dumps(course)
     with open('test_data.json', 'w') as json_file:
         json_file.write(json_str)
+    return json_str
+
 
