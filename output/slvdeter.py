@@ -6,14 +6,18 @@ def slvdeter(a:str):
     M=det_course(readtext(a))
     process=M["expand"]
     result=M["figure"]
-    m=sp.latex(process)
-    n=sp.latex(result)
+    for m in process:
+        m=sp.latex(m)
+    for n in result:
+        n=sp.latex(n)
     course = {}
-    course['expand'] = m
-    course['figure'] = n
+    course['expand'] = sp.latex(process)
+    course['figure'] = sp.latex(result)
     json_str = json.dumps(course)
+    print(json_str)
     with open('test_data.json', 'w') as json_file:
         json_file.write(json_str)
     return json_str
+
 
 
