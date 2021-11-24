@@ -20,3 +20,7 @@ def answer(request):
         jsondata = json_file.read()
     return JsonResponse(jsondata, safe=False)
 
+def test(request):
+    mat = request.POST.get('matrix')
+    return JsonResponse({'matrix': mat}, safe=False)
+
