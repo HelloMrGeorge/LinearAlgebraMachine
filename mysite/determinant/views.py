@@ -25,3 +25,6 @@ def test(request):
     logging.debug(type(data))
     return JsonResponse(data)
 
+def csrftest(request):
+    return render(request, 'crsfTest.html')
+
