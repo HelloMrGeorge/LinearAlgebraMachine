@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from output import slvdeter
 from django.http.response import HttpResponse
-from django.core import serializers
 from django.http import JsonResponse
+import json
 
-import os
-
+import logging
+logging.basicConfig(level=logging.WARN, filename='mylog.txt', filemode='w')
 # Create your views here.
 
 def determinant(request):
@@ -21,6 +21,7 @@ def answer(request):
     return JsonResponse(jsondata, safe=False)
 
 def test(request):
-    mat = request.POST.get('matrix')
-    return JsonResponse({'matrix': mat}, safe=False)
+    data = json.loads(request.body)
+    logging.debug(type(data))
+    return JsonResponse(data)
 
