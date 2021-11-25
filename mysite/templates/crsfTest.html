@@ -21,7 +21,7 @@
     </p>
   </div>
 
-  {% csrf_token %}
+  <!-- {% csrf_token %} -->
   <script>
     var csrftoken = docCookies.getItem('csrftoken');
     var myInit = { 
@@ -30,7 +30,7 @@
       headers: {'X-csrftoken':csrftoken},
       body: JSON.stringify({matrix: '[[1,2,3],[4,5,6],[3,2,2]]'}),
     };
-    var myRequest = new Request('http://127.0.0.1:8000/determinant/test', myInit);
+    var myRequest = new Request("{% url 'csrf_test' %}", myInit);
     var textarea = document.getElementById('text');
 
     fetch(myRequest)
