@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import json
 
 import logging
-logging.basicConfig(level=logging.WARN, filename='mylog.txt', filemode='w')
+logging.basicConfig(level=logging.DEBUG, filename='mylog.txt', filemode='w')
 # Create your views here.
 
 def determinant(request):
@@ -13,15 +13,18 @@ def determinant(request):
 
 
 def answer(request):
-    mat = request.POST.get('matrix')
+    mat = json.loads(request.body)['matrix']
     slvdeter.slvdeter(mat)
     # 将字符串类型数据转换为json
     with open('./test_data.json', 'r') as json_file:
-        jsondata = json_file.read()
-    return JsonResponse(jsondata, safe=False)
+        jsondata = json.load(json_file)
+        logging.debug(jsondata)
+        logging.debug(type(jsondata))
+    return JsonResponse(jsondata)
 
 def test(request):
     data = json.loads(request.body)
+    logging.debug(data)
     logging.debug(type(data))
     return JsonResponse(data)
 
