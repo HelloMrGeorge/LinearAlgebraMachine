@@ -3,7 +3,7 @@ import sympy as sp
 from sympy.matrices.dense import MutableDenseMatrix
 
 import logging
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.WARN)
 
 class InverseSolver:
 
@@ -13,7 +13,7 @@ class InverseSolver:
         self.course: List[MutableDenseMatrix] = []
         self.is_Invertible = False if self.mat.det() == 0 else True #可逆标志
 
-    def getInverse(self) -> List[MutableDenseMatrix]:
+    def getCourse(self) -> List[MutableDenseMatrix]:
         if self.is_Invertible == False:
             raise Exception('矩阵不可逆')
 
@@ -54,8 +54,11 @@ class InverseSolver:
                     self.course.append(AE.copy())
         return self.course
 
+    def getInverse(self) -> MutableDenseMatrix:
+        return self.mat.inv()
+
 if __name__ == '__main__':
-    mat = sp.Matrix([[1,3,3],[3,2,1],[2,3,3]])
+    mat = sp.Matrix([[1,0,0],[0,1,0],[0,0,3]])
     logging.info(mat)
     solver = InverseSolver(mat)
     co = solver.getInverse()
