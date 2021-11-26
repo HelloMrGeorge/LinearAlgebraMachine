@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import json
 
 import logging
-logging.basicConfig(level=logging.DEBUG, filename='mylog.txt', filemode='w')
+logging.basicConfig(level=logging.WARN, filename='mylog.txt', filemode='w')
 # Create your views here.
 
 def determinant(request):

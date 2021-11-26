@@ -132,3 +132,4 @@ dmypy.json
 nohup.out
 mylog.txt
 test_data.json
+.idea
