@@ -3,7 +3,7 @@ import sympy as sp
 
 class EigenSolver:
 
-    def __init__(self, mat) -> None:
+    def __init__(self, mat: sp.MutableDenseMatrix) -> None:
         self.mat: sp.MutableDenseMatrix = mat
         self.charploy: sp.Poly = None    #Poly.all_coeffs()可以获取系数列表
         self.eigenvalues: dict = None   #特征值字段是一个字典，键代表特征值，值代表对应的重数
@@ -22,7 +22,7 @@ class EigenSolver:
         return self.eigenvectors
 
     def getCourse(self):
-        return {"matrix": mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
+        return {"matrix": self.mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
 
 def getCharpoly(mat: sp.MutableDenseMatrix, simplify = sp.simplify) -> sp.PurePoly:
     #封装了sympy的charpoly()方法，请不要在矩阵中加入含lambda的变量，因为默认特征多项式的自变量的是lambda

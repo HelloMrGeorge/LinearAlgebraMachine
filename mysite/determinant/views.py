@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.WARN, filename='mylog.txt', filemode='w')
 # Create your views here.
 
 def determinant(request):
-    return render(request, 'demo/demoPage.html')
+    return render(request, 'demo/deterPage.html')
 
 
 def answer(request):

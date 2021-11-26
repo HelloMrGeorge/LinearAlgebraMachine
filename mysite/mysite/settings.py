@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders', #cors允许跨域请求
     'demo',
     'determinant',
+    'eigen',
 ]
 
 MIDDLEWARE = [
