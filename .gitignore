@@ -131,3 +131,4 @@ dmypy.json
 # George customized
 nohup.out
 mylog.txt
+test_data.json
