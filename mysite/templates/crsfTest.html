@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="lam's contributors">
+
+  <title>csrf test</title>
+  {% load static %}
+  <script src="{% static 'js/cookieFrame.js' %}"></script>
+</head>
+<body>
+
+  <div>
+    <p>
+      测试csrf
+    </p>
+    <p id="text">
+      233
+    </p>
+  </div>
+
+  <!-- {% csrf_token %} -->
+  <script>
+    var csrftoken = docCookies.getItem('csrftoken');
+    var myInit = { 
+      method: 'POST',
+      mode: 'cors',
+      headers: {'X-csrftoken':csrftoken},
+      body: JSON.stringify({matrix: '[[1,2,3],[4,5,6],[3,2,2]]'}),
+    };
+    var myRequest = new Request("{% url 'csrf_test' %}", myInit);
+    var textarea = document.getElementById('text');
+
+    fetch(myRequest)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      textarea.innerHTML = data.matrix
+    });
+  </script>
+</body>
+</html>
+

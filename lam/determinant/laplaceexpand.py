@@ -87,7 +87,6 @@ def lapexp_expr(expr):
         return lap_expand(expr)
     args = []
     read_mat_mono(args, expr)
-    print(args)
     expr_list = [0 for i in range(len(args))]
     for i in range(len(args)):
         expr_list[i] = lap_exp_mono(args[i])
