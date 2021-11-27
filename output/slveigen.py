@@ -16,7 +16,30 @@ class MyEncoder(json.JSONEncoder):
             return str(obj)
         else:
             return str(obj)
-def slvdeter_eigen(a:str):#（特征值模块）
+def slveigengetcharpoly(a:str):#特征多项式
+    eigenSolver = EigenSolver(readtext(a))
+    p = eigenSolver.getCharpoly()
+    p=sp.latex(p)
+    print(p)
+    json_str = json.dumps(p)
+    return json_str
+def slveigenvalue(a:str):#特征值
+    eigenSolver = EigenSolver(readtext(a))
+    p = eigenSolver.getEigenvalues()
+    p = sp.latex(p)
+    json_str = json.dumps(p)
+    return json_str
+def slveigenvectors(a:str):#特征向量
+    eigenSolver = EigenSolver(readtext(a))
+    eigenvectors = eigenSolver.getEigenvectors()
+    eigenvectors_0 = []
+    for i in range(len(eigenvectors)):
+        m = (sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), sp.latex(eigenvectors[i][2][0]))
+        eigenvectors_0.append(m)
+    eigenvectors=eigenvectors_0
+    json_str = json.dumps(eigenvectors)
+    return json_str
+def slveigenvectorsCourse(a:str):#（特征值求解过程）
     eigenSolver=EigenSolver(readtext(a))
     p=eigenSolver.getEigenvectorsCourse()
     matrix=p['matrix']
