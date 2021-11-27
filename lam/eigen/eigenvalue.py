@@ -21,7 +21,7 @@ class EigenSolver:
         self.eigenvectors = getEigenvectors(self.mat, error_when_incomplete=error_when_incomplete, **flags)
         return self.eigenvectors
 
-    def getCourse(self):
+    def get_course(self):
         return {"matrix": self.mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
 
 def getCharpoly(mat: sp.MutableDenseMatrix, simplify = sp.simplify) -> sp.PurePoly:
