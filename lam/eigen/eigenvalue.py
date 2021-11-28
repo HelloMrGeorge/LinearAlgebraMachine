@@ -1,10 +1,7 @@
 import sympy as sp
-from sympy.abc import x, y
 
 
 class EigenSolver:
-
-    #def __init__(self, mat: sp.MutableDenseMatrix) -> None:
 
     def __init__(self, mat: sp.MutableDenseMatrix) -> None:
         self.mat: sp.MutableDenseMatrix = mat
@@ -24,15 +21,7 @@ class EigenSolver:
         self.eigenvectors = getEigenvectors(self.mat, error_when_incomplete=error_when_incomplete, **flags)
         return self.eigenvectors
 
-    def getEigenvectorsCourse(self):
-        return {"matrix": self.mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
-
-    @property
-    def is_diagonalizable(self, reals_only=False):
-        return self.mat.is_diagonalizable(reals_only=reals_only)
-
-
-    def getCourse(self):
+    def get_course(self):
         return {"matrix": self.mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
 
 def getCharpoly(mat: sp.MutableDenseMatrix, simplify = sp.simplify) -> sp.PurePoly:
@@ -45,4 +34,10 @@ def getEigenvalues(mat: sp.MutableDenseMatrix, error_when_incomplete=True, **fla
 def getEigenvectors(mat: sp.MutableDenseMatrix, error_when_incomplete=True, **flags):
     return mat.eigenvects(error_when_incomplete=error_when_incomplete, **flags)
 
-
+if __name__ == "__main__":
+    mat = sp.Matrix(3, 3, [5, 6, -3, -1, 0, 1, 1, 2, -1])
+    eigenSolver = EigenSolver(mat)
+    p1 = eigenSolver.getCharpoly()
+    p2: dict = eigenSolver.getEigenvalues()
+    p3 = eigenSolver.getEigenvectors()
+    print(eigenSolver.getCourse())

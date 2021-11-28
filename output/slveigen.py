@@ -39,9 +39,9 @@ def slveigenvectors(a:str):#特征向量
     eigenvectors=eigenvectors_0
     json_str = json.dumps(eigenvectors)
     return json_str
-def slveigenvectorsCourse(a:str):#（特征值求解过程）
+def slveigenCourse(a:str):#（特征值求解过程）
     eigenSolver=EigenSolver(readtext(a))
-    p=eigenSolver.getEigenvectorsCourse()
+    p=eigenSolver.get_course()
     matrix=p['matrix']
     eigenvectors=p['eigenvectors']
     charpoly=p['charpoly']

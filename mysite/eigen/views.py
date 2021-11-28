@@ -7,7 +7,7 @@ import json
 logging.basicConfig(level=logging.DEBUG,filename='mylog.txt',filemode='w')
 def eigen(request):
     return render(request, 'demo/eigenPage.html')
-def eigenvectorsCourse(request):
+def eigenCourse(request):
     mat = json.loads(request.body)['matrix']
     jsondata=slveigen.slveigenvectorsCourse(mat)
     logging.debug(jsondata)
