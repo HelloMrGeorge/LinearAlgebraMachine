@@ -37,7 +37,7 @@ def slveigenvectors(a:str):#特征向量
         p = []
         for j in range(len(eigenvectors[i][2])):
             p.append(sp.latex(eigenvectors[i][2][j]))
-        m = (sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), sp.latex(p))
+        m = [sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), sp.latex(p)]
         eigenvectors_0.append(m)
     eigenvectors=eigenvectors_0
     json_str = json.dumps(eigenvectors)
@@ -48,6 +48,11 @@ def slveigenCourse(a:str):#（特征值求解过程）
     matrix=p['matrix']
     eigenvectors=p['eigenvectors']
     charpoly=p['charpoly']
+    lambdamat=p['lambdamat']
+    lambdamat=sp.latex(lambdamat)
+    lambdamatvalue=p['lambdamatvalue']
+    for i in range(len(lambdamatvalue)):
+        lambdamatvalue[i]=sp.latex(lambdamatvalue[i])
     matrix=sp.latex(matrix)
     charpoly=sp.latex(charpoly)
     eigenvectors_0=[]
@@ -57,8 +62,10 @@ def slveigenCourse(a:str):#（特征值求解过程）
             q.append(sp.latex(eigenvectors[i][2][j]))
         m = (sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), sp.latex(q))
         eigenvectors_0.append(m)
+    p['lambdamat']=lambdamat
     p['matrix']=matrix
     p['eigenvetors']=eigenvectors_0
+    p['lambdamatvalue']=lambdamatvalue
     p['charpoly']=charpoly
     json_str = json.dumps(p,cls=MyEncoder,indent=4)
     return json_str
