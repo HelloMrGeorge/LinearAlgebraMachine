@@ -88,7 +88,8 @@ def slveigenCourse(a:str):#（特征值求解过程）
     json_str = json.dumps(p,cls=MyEncoder,indent=4)
     return json_str
 
-slveigenCourse("[[1,2,3],[5,62,2],[245,4,6]]")
+if __name__ == '__main__':
+    slveigenCourse("[[1,2,3],[5,62,2],[245,4,6]]")
 
 
 

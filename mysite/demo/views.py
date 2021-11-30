@@ -7,8 +7,6 @@ from django.http import JsonResponse
 # lampy_dir = Path(__file__).resolve().parent.parent.parent
 # sys.path.append(str(lampy_dir))
 
-# from lam.core import input, expression
-# from lam.linearequation import outtext
 
 # Create your views here.
 
@@ -22,6 +20,5 @@ def answer(request):
 def gaussElim(request):
     return render(request, 'demo/GEMPage.html')
 
-def guassAns(request):
-    lis = 0
-    return JsonResponse({'matLis': lis})
+def testPage(request):
+    return render(request, 'demo/testPage.html')
