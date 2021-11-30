@@ -40,4 +40,7 @@ if __name__ == "__main__":
     p1 = eigenSolver.getCharpoly()
     p2: dict = eigenSolver.getEigenvalues()
     p3 = eigenSolver.getEigenvectors()
-    print(eigenSolver.getCourse())
+    p4=eigenSolver.get_course()
+    p5=eigenSolver.getlambdamatvalue()
+    print(sp.latex(p4['charpoly']))
+    print(p4['charpoly'])
