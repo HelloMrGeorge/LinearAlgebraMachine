@@ -84,7 +84,7 @@ def slveigenCourse(a:str):#（特征值求解过程）
         lambdamatvalue[i] = sp.latex(lambdamatvalue[i])
     p.update({'lambdamat': lambdamat})
     p.update({'lambdamatvalue':lambdamatvalue})
-    print(p['lambdamatvalue'])
+    # print(p['lambdamatvalue'])
     json_str = json.dumps(p,cls=MyEncoder,indent=4)
     return json_str
 

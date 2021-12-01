@@ -82,7 +82,7 @@ class Schmidt_orther:
         self.result[i] = copy(self.data[i])
         for j in range(i):
             # logging.debug(f'i:{i}, j:{j}')
-            self.result[i] = self.result[i] - sp.Mul(sp.Rational(self.inners[i, j], self.inners[j, j])) * self.result[j]
+            self.result[i] = self.result[i] - sp.Mul(self.inners[i, j] / self.inners[j, j]) * self.result[j]
     
 
 
