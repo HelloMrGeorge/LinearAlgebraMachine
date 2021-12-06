@@ -20,7 +20,7 @@ def quad_term_trans(mat: MutableDenseMatrix, i: int) -> MutableDenseMatrix:
     ret: MutableDenseMatrix = sp.eye(dim)
     for k in range(dim):
         if k != i:
-            ret[i, k] = -sp.Rational(mat[i, k], mat[i, i])
+            ret[i, k] = -sp.Mul(sp.Pow(mat[i, i], -1), mat[i, k])
     return ret
 
 def cross_term_trans(mat: MutableDenseMatrix, i: int , j:int) -> MutableDenseMatrix:

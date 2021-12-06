@@ -16,7 +16,7 @@ def poly_inner(a: Expr, b: Expr) -> Number:
 
 def normalize(vec: MutableDenseMatrix):
     # 单位化向量
-    return vec / vec.norm()
+    return sp.Mul(sp.Pow(vec.norm(), -1), vec)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
