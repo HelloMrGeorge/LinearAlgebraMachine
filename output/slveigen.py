@@ -49,16 +49,14 @@ def slveigenvectors(a:str):#特征向量
     eigenSolver = EigenSolver(readtext(a))
     eigenvectors = eigenSolver.getEigenvectors()
     eigenvectors_0 = []
-    print(eigenvectors[0][2])
     for i in range(len(eigenvectors)):
         p = []
         for j in range(len(eigenvectors[i][2])):
             p.append(sp.latex(eigenvectors[i][2][j]))
-        m = [sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), sp.latex(p)]
+        m = [sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), p]
         eigenvectors_0.append(m)
     eigenvectors=eigenvectors_0
-    json_str = json.dumps(eigenvectors)
-    return json_str
+    return eigenvectors
 def slveigenCourse(a:str):#（特征值求解过程）
     eigenSolver=EigenSolver(readtext(a))
     p=eigenSolver.get_course()
@@ -74,22 +72,22 @@ def slveigenCourse(a:str):#（特征值求解过程）
         q = []
         for j in range(len(eigenvectors[i][2])):
             q.append(sp.latex(eigenvectors[i][2][j]))
-        m = (sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), sp.latex(q))
+        m = (sp.latex(eigenvectors[i][0]), sp.latex(eigenvectors[i][1]), q)
         eigenvectors_0.append(m)
     p['matrix']=matrix
-    p['eigenvetors']=eigenvectors_0
+    p['eigenvectors']=eigenvectors_0
     p['charpoly']=charpoly
+    print(p['charpoly'])
     lambdamat = sp.latex(lambdamat)
     for i in range(len(lambdamatvalue)):
         lambdamatvalue[i] = sp.latex(lambdamatvalue[i])
     p.update({'lambdamat': lambdamat})
     p.update({'lambdamatvalue':lambdamatvalue})
-    # print(p['lambdamatvalue'])
-    json_str = json.dumps(p,cls=MyEncoder,indent=4)
-    return json_str
+    return p
 
 if __name__ == '__main__':
-    slveigenCourse("[[1,2,3],[5,62,2],[245,4,6]]")
+    slveigenCourse("[[3,2,4],[2,0,2],[4,2,3]]")
 
 
+s
 
