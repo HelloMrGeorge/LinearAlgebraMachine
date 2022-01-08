@@ -21,7 +21,8 @@ def test_vec_orther():
     logging.debug(sovler.get_course())
 
 def test_poly_orther():
-    data = [1, x, x**2, 2*x**3]
+    data = [1, x, x**2]
+    # data = [1, m*x, n*x**2]
     solver = Schmidt_orther(data, poly_inner)
     logging.debug(solver.get_course())
 
@@ -33,4 +34,6 @@ def test_func():
 
 if __name__ == "__main__":
     
+    # a = sp.Mul(sp.Pow(n/2, -1), m/2)
+    # logging.debug(a)
     test_poly_orther()

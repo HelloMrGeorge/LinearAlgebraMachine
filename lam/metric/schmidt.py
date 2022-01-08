@@ -59,6 +59,7 @@ class Schmidt_vector_orther(matSolver):
 class Schmidt_orther:
     '''
     泛用的Schmidt正交化求解器，支持向量，多项式的正交化
+    inners的对角线元素存储(epsilon_i, epsilon_i), 下三角其他元素存储(alpha_i, epsilon_j)
     '''
     def __init__(self, data: list, inner: Callable[[Any, Any], Any]) -> None:
         self.data: list = data
@@ -82,7 +83,7 @@ class Schmidt_orther:
         self.result[i] = copy(self.data[i])
         for j in range(i):
             # logging.debug(f'i:{i}, j:{j}')
-            self.result[i] = self.result[i] - sp.Mul(sp.Rational(self.inners[i, j], self.inners[j, j])) * self.result[j]
+            self.result[i] = self.result[i] - sp.Mul(self.inners[i, j] / self.inners[j, j]) * self.result[j]
     
 
 
