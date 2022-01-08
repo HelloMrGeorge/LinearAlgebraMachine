@@ -16,7 +16,6 @@ def test1():
     [6,0,8,10]
     ])
     solver = QuadSolver(mat)
-    # m = solver.get_standardFrom()
     co = solver.get_course()
     newco = []
     for i in co:
@@ -25,10 +24,4 @@ def test1():
     logging.debug(newco)
 
 if __name__ == '__main__':
-    tex = sp.latex(sp.Matrix([
-    [1,3,4,6],
-    [3,2,3,0],
-    [4,3,7,8],
-    [6,0,8,10]
-    ]))
-    print(tex)
+    test1()

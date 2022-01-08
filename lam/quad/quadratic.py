@@ -10,14 +10,6 @@ logging.basicConfig(level=logging.DEBUG)
 
 course_type = List[Tuple[MutableDenseMatrix, MutableDenseMatrix]]
 
-def cross_term_trans(mat: MutableDenseMatrix, i: int , j:int) -> MutableDenseMatrix:
-    # 消去交叉项的线性变数替换，i，j表示交叉项的下标a_{ij}
-    if i == j:
-        raise Exception("不是交叉项")
-    ret: MutableDenseMatrix = sp.eye(mat.shape[0])
-    ret[i,i], ret[j,j], ret[i,j], ret[j,i] = 1, -1, 1, 1
-    return ret
-
 class QuadSolver(matSolver):
 
     def __init__(self, mat: MutableDenseMatrix) -> None:
