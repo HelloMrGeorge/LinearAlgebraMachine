@@ -1,4 +1,3 @@
-from sympy.printing.latex import latex
 import __init__
 import sympy as sp
 from lam.quad.quadratic import QuadSolver
