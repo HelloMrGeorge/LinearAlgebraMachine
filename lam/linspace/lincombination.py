@@ -34,7 +34,7 @@ def __is_matrix_lincombination(group: List, vect: MutableDenseMatrix, coef: list
         return flag
         
 
-def is_lincombination(group: List, vect, coef: list = []) -> bool:
+def is_lincombination(group: List, vect, coef: List = []) -> bool:
     '''
     判断vect是否是group的线性组合，coef作为引用参数用于返回线性组合的系数
     '''
