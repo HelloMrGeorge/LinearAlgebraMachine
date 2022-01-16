@@ -7,3 +7,7 @@ urlpatterns = [
     path('answer', views.answer, name='answer'),
 
 ]
+
+urlpatterns = [
+    path('Determinantcalculator',views.HOME,name='HOME')
+]

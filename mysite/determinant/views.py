@@ -19,3 +19,5 @@ def answer(request):
         jsondata = json_file.read()
     return JsonResponse(jsondata, safe=False)
 
+def HOME(request):
+    return render(request,'deter.html')
