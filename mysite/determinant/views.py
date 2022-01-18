@@ -30,3 +30,5 @@ def test(request):
 def csrftest(request):
     return render(request, 'crsfTest.html')
 
+def HOME(request):
+    return render(request,'deter.html')

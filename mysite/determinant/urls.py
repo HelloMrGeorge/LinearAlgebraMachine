@@ -8,3 +8,7 @@ urlpatterns = [
     path('test', views.test, name='csrf_test'),
     path('csrf', views.csrftest),
 ]
+
+urlpatterns = [
+    path('Determinantcalculator',views.HOME,name='HOME')
+]
