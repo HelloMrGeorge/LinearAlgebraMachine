@@ -184,7 +184,8 @@
           .then((response) => {
             console.log(response)
             var xunhuan=''
-            for(var i=0;i<response.expand.length;i++){
+            xunhuan=xunhuan+`$${response.expand[0]}$\n`
+            for(var i=1;i<response.expand.length;i++){
             xunhuan=xunhuan+`$=${response.expand[i]}$\n`;
             }
             texa.innerHTML = `${xunhuan}\n$=${response.figure[0]}$\n$=${response.figure[1]}$`;
