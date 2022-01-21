@@ -25,6 +25,7 @@ class mn_matrix:
         return (self.x, self.y, self.m, self.n)
 
     def get(self, x: Expr, y: Expr):
+        # 获取第x行，第y列的元素，这里以1为开始序号
         x = simplify(x)
         y = simplify(y)
         if x.is_integer and y.is_integer:

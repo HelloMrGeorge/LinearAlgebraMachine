@@ -1,6 +1,6 @@
 import sympy as sp
-from sympy import S, Function, simplify, Symbol
-from lam.determinant.mnmatrix import mn_matrix, scalar_mul
+from sympy import S, Function, simplify
+from lam.determinant.mnmatrix import mn_matrix
 
 class id_func(Function):
     '''
@@ -55,13 +55,28 @@ class circ_func(Function):
     '''
     @classmethod
     def eval(cls, x, y, m, n):
-        if simplify(sp.Eq(x, y)) == True:
-            return S.One
-        elif simplify(sp.Eq(x, y)) == False:
-            return S.Zero
+        diagN = (y - x)
+        flag = (y - x).subs(n, 100)
+        # s是对角线的序数，以主对角线为第0条对角线，上三角斜线依次为1,...,n-1，
+        # 下三角-1,...,-n+1，由于1-n无法判断正负,必须先假定n为一个较大的数，注意这里refine函数也是不能用的
+        if flag.is_nonnegative == True: # 如果diagN大于0
+            return diagN + 1
+        elif flag.is_negative == True:
+            return n + 1 + diagN
+
+class circ_matrix(mn_matrix):
+    '''
+    定义循环矩阵
+    '''
+    def __init__(self) -> None:
+        self.init_symbol()
+        self.init_func(circ_func)
+
+
 
 if __name__ == "__main__":
     id = id_matrix()
-    kid = scalar_mul(Symbol('c'),id)
-    a = kid.get(kid.n,kid.n)
-    print(a)
+    n = id.n
+    res = simplify(sp.Mod(n+2,n))
+    res2 = (n+1) / n
+    print(res, res2)

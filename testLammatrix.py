@@ -1,4 +1,7 @@
-from lammatrix import *
+from lam.determinant.lammatrix import *
+from sympy.abc import x,y,z
+from sympy import refine, Q, Symbol
+from lam.determinant.mnmatrix import scalar_mul
 
 def test1():
     id = id_matrix()
@@ -12,5 +15,15 @@ def test2():
     res = ktri.get(tri.n,tri.n-1)
     print(res)
 
+def test3():
+    circ = circ_matrix()
+    n = circ.n
+    a = circ.get(n-1,2)
+    print(a)
+
+def test4():
+    flag = refine(x > 3, Q.infinite(x))
+    print(flag)
+
 if __name__ == "__main__":
-    test2()
+    test3()
