@@ -1,5 +1,4 @@
 import sympy as sp
-from sympy.abc import x, y
 
 
 class EigenSolver:
@@ -22,12 +21,8 @@ class EigenSolver:
         self.eigenvectors = getEigenvectors(self.mat, error_when_incomplete=error_when_incomplete, **flags)
         return self.eigenvectors
 
-    def getEigenvectorsCourse(self):
-        return {"matrix": mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
-
-    @property
-    def is_diagonalizable(self, reals_only=False):
-        return self.mat.is_diagonalizable(reals_only=reals_only)
+    def get_course(self):
+        return {"matrix": self.mat, "charpoly": self.getCharpoly(), "eigenvectors": self.getEigenvectors()}
 
 def getCharpoly(mat: sp.MutableDenseMatrix, simplify = sp.simplify) -> sp.PurePoly:
     #封装了sympy的charpoly()方法，请不要在矩阵中加入含lambda的变量，因为默认特征多项式的自变量的是lambda
@@ -45,4 +40,7 @@ if __name__ == "__main__":
     p1 = eigenSolver.getCharpoly()
     p2: dict = eigenSolver.getEigenvalues()
     p3 = eigenSolver.getEigenvectors()
-    print(eigenSolver.getEigenvectorsCourse())
+    p4=eigenSolver.get_course()
+    p5=eigenSolver.getlambdamatvalue()
+    print(sp.latex(p4['charpoly']))
+    print(p4['charpoly'])
