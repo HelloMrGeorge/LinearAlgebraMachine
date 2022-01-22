@@ -236,13 +236,13 @@
     </configuration>
     <list>
       <item itemvalue="Python.国创调试" />
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.web调试" />
       <item itemvalue="Python.eigenvalue" />
       <item itemvalue="Python.latex" />
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.readtext" />
       <item itemvalue="Python.slvdeter" />
       <item itemvalue="Python.slveigen" />
+      <item itemvalue="Python.web调试" />
     </list>
     <recent_temporary>
       <list>
