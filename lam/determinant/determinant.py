@@ -17,6 +17,6 @@ class Deter(sp.matrices.dense.MutableDenseMatrix):
         return laplaceexpand.lap_expand(self, n, coe, axis)
     
 
-
-
-        
+def is_singular(mat: sp.MatrixBase) -> bool:
+    assert mat.is_square
+    return bool(mat.det() != 0)

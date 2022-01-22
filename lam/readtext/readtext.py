@@ -21,3 +21,8 @@ def readtext(str):
         str3.append(str2[i].split(sep=','))
     M=Matrix(str3)
     return M
+
+
+
+
+
