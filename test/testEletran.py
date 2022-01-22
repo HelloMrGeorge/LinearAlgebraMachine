@@ -1,4 +1,4 @@
-from eletran import *
+from lam.determinant.eletran import *
 from lam.determinant.lammatrix import *
 
 def test1():

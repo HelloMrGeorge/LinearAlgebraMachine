@@ -1,6 +1,6 @@
 import sympy as sp
 from sympy import S, Function, simplify
-from lam.determinant.mnmatrix import mn_matrix
+from lam.mnmatrix.mnmatrix import mn_matrix
 
 class id_func(Function):
     '''
