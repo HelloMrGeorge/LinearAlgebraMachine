@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e312417d-52cc-4f2f-8ed2-8ab4e8d8639b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/htmDemo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/core/expr.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/core/expression.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/core/input.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/core/ndmatrix.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/core/output.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/core/process.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/det/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/det/det.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/determinant/cofactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/lam/determinant/cofactor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/determinant/determinant.py" beforeDir="false" afterPath="$PROJECT_DIR$/lam/determinant/determinant.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/determinant/laplaceexpand.py" beforeDir="false" afterPath="$PROJECT_DIR$/lam/determinant/laplaceexpand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/linearEqu/GE.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/linearEqu/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/linearEqu/solve.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/linearequation/outtext.py" beforeDir="false" afterPath="$PROJECT_DIR$/lam/linearequation/outtext.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/linearequation/reduction.py" beforeDir="false" afterPath="$PROJECT_DIR$/lam/linearequation/reduction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lam/linearequation/solve.py" beforeDir="false" afterPath="$PROJECT_DIR$/lam/linearequation/solve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/demo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/demo/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/demo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/demo/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/01.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/templates/demo/testView.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/templates/demo/testView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/latextrans.py" beforeDir="false" afterPath="$PROJECT_DIR$/latex/latextrans.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
