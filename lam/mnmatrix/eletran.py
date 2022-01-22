@@ -1,4 +1,4 @@
-from lam.determinant.mnmatrix import mn_matrix
+from lam.mnmatrix.mnmatrix import mn_matrix
 import sympy as sp
 from sympy import Expr, simplify
 
