@@ -1,5 +1,5 @@
 import sympy as sp
-from cornermatrix import *
+from lam.mnmatrix.cornermatrix import *
 from sympy.abc import n
 from lam.mnmatrix.eletran import *
 

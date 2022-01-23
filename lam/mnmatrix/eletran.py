@@ -2,6 +2,7 @@ from lam.mnmatrix.mnmatrix import mn_matrix
 import sympy as sp
 from sympy import Expr, simplify
 
+
 # 行变换
 
 class ele_row_tran_mn(mn_matrix):
@@ -14,9 +15,6 @@ class ele_row_tran_mn(mn_matrix):
         self.mat = mat # 内置未作初等变换的矩阵
         self.m_ind = simplify(m_ind)
         self.n_ind = simplify(n_ind)
-
-    def init_func(self, f):
-        pass
 
     def get(self, x: Expr, y: Expr):
         if sp.Eq(x, self.m_ind) == True:
@@ -39,8 +37,6 @@ class ele_row_tran_km(mn_matrix):
         self.k = simplify(k)
         self.m_ind = simplify(m_ind)
 
-    def init_func(self, f):
-        pass
 
     def get(self, x: Expr, y: Expr):
         if sp.Eq(x, self.m_ind) == True:
@@ -60,8 +56,7 @@ class ele_row_tran_kmn(mn_matrix):
         self.m_ind = simplify(m_ind)
         self.n_ind = simplify(n_ind)
 
-    def init_func(self, f):
-        pass
+
 
     def get(self, x: Expr, y: Expr):
         if sp.Eq(x, self.n_ind) == True:
@@ -83,8 +78,7 @@ class ele_col_tran_mn(mn_matrix):
         self.m_ind = simplify(m_ind)
         self.n_ind = simplify(n_ind)
 
-    def init_func(self, f):
-        pass
+
 
     def get(self, x: Expr, y: Expr):
         if sp.Eq(y, self.m_ind) == True:
@@ -107,8 +101,7 @@ class ele_col_tran_km(mn_matrix):
         self.k = simplify(k)
         self.m_ind = simplify(m_ind)
 
-    def init_func(self, f):
-        pass
+
 
     def get(self, x: Expr, y: Expr):
         if sp.Eq(y, self.m_ind) == True:
@@ -128,8 +121,6 @@ class ele_col_tran_kmn(mn_matrix):
         self.m_ind = simplify(m_ind)
         self.n_ind = simplify(n_ind)
 
-    def init_func(self, f):
-        pass
 
     def get(self, x: Expr, y: Expr):
         if sp.Eq(y, self.n_ind) == True:
