@@ -65,7 +65,7 @@ class ele_row_tran_kmn(mn_matrix):
             return self.mat.get(x, y)
 
 
-
+# 列变换
 
 class ele_col_tran_mn(mn_matrix):
     '''
@@ -88,7 +88,6 @@ class ele_col_tran_mn(mn_matrix):
         else:
             return self.mat.get(x, y)
 
-# 列变换
 
 class ele_col_tran_km(mn_matrix):
     '''
