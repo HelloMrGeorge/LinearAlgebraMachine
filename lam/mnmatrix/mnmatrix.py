@@ -46,10 +46,28 @@ class mn_matrix:
         return ret
 
 
-def scalar_mul(k: Expr, mat: mn_matrix) -> mn_matrix:
+class add_matrix(mn_matrix):
+    '''
+    定义矩阵加法运算
+    '''
+
+    def __init__(self, ma: mn_matrix, mb: mn_matrix) -> None:
+        super().__init__()
+        self.ma = ma.copy()
+        self.mb = mb.copy()
+
+    def get(self, x: Expr, y: Expr):
+        return self.ma.get(x, y) + self.ma.get(x, y)
+
+class scalar_mul_matrix(mn_matrix):
     '''
     定义矩阵数乘运算
     '''
-    mat = mat.copy()
-    mat.func = sp.Mul(k, mat.func)
-    return mat
+
+    def __init__(self, mat: mn_matrix, k) -> None:
+        super().__init__()
+        self.mat = mat.copy()
+        self.k = k
+
+    def get(self, x: Expr, y: Expr):
+        return sp.Mul(self.k, self.mat.get(x, y))
