@@ -1,7 +1,7 @@
 from sympy import *
 from lam.linearequation import reduction
 
-class EquationSolve(reduction.MatrixReduction):
+class EquationSolver(reduction.MatrixReduction):
 
     def __init__(self, matrix: MatrixBase) -> None:
         #matrix输入线性方程增广矩阵

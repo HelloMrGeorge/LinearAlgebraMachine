@@ -1,5 +1,4 @@
 from sympy import *
-from sympy.matrices import matrices
 
 class MatrixReduction():
     '''
@@ -46,6 +45,3 @@ class MatrixReduction():
                 return colInd
         return row.shape[1] #如果一行全为0，主元序号设置为最大索引+1
 
-def reduced_echelon_form(mat: MatrixBase):
-
-    return
