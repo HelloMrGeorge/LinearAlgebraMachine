@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="lam's contributors">
+
+    {% block head%}
+      <title>线性代数解题平台</title>
+    {% endblock head%}
+
+    {% load static %}
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Optional Bootstrap Theme -->
+
+    <link href="data:text/css;charset=utf-8," data-href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet" id="bs-theme-stylesheet">
+
+    <!-- Documentation extras -->
+
+    <link href="{% static 'bootstrap/css/docs.min.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="">
+    <link rel="icon" href="">
+
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+
+  </head>
+
+  <body>
+    {% block body%}
+      
+    {% endblock body%}
+  </body>
+
+</html>

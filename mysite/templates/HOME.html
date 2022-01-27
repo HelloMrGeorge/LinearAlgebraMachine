@@ -11,42 +11,23 @@
 
   <title>线性代数解题平台</title>
 
-  <link rel="canonical" href="http://v3.bootcss.com/components/">
+  {% load static %}
 
   <!-- Bootstrap core CSS -->
 
-  <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.14/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Optional Bootstrap Theme -->
 
-  <link href="data:text/css;charset=utf-8," data-href="/dist/css/bootstrap-theme.min.css" rel="stylesheet"
-    id="bs-theme-stylesheet">
+  <link href="data:text/css;charset=utf-8," data-href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet" id="bs-theme-stylesheet">
 
   <!-- Documentation extras -->
 
-  <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.14/assets/css/docs.min.css" rel="stylesheet">
-
-  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.14/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-  <![endif]-->
+  <link href="{% static 'bootstrap/css/docs.min.css' %}" rel="stylesheet">
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="">
   <link rel="icon" href="">
-
-  <!-- <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?bdb993b828cbe079a7fbc1a951f44726";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script> -->
 
   <script>
     MathJax = {
@@ -57,8 +38,6 @@
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
   </script>
-
-
 </head>
 
 <body>
@@ -204,7 +183,7 @@
         <br />
         <li>
           <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>
-          <span class="glyphicon-class"><a href="">glyphicon glyphicon-glass</a></span>
+          <span class="glyphicon-class"><a href="/demo/test">测试页面</a></span>
         </li>
       
         <li>
@@ -230,5 +209,6 @@
 
   </div>
 </body>
+
 
 </html>

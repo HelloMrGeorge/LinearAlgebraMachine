@@ -25,6 +25,11 @@ urlpatterns+=[
     path('demo/', include('demo.urls')),
 ]
 urlpatterns+=[
+    path('eigen/',include('eigen.urls')),
+]
+urlpatterns+=[
     path('determinant/',include('determinant.urls')),
 ]
+
+
 

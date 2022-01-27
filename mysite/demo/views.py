@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -7,13 +8,8 @@ from django.http import JsonResponse
 # lampy_dir = Path(__file__).resolve().parent.parent.parent
 # sys.path.append(str(lampy_dir))
 
-# from lam.core import input, expression
-# from lam.det import det
-from lam.linearequation import outtext
 
-from .formtest import formtest
 # Create your views here.
-import json
 
 def demo(request):
     return render(request, 'demo/demoPage.html')
@@ -25,22 +21,12 @@ def answer(request):
 def gaussElim(request):
     return render(request, 'demo/GEMPage.html')
 
-def guassAns(request):
-    lis = 0
-    return JsonResponse({'matLis': lis})
+def testPage(request):
+    return render(request, 'demo/testPage.html')
 
-def testView(request):
-    #测试页面
-    text = outtext.main()
-    # text = formtest()
-    return render(request, 'demo/testView.html', {'text': text})
+def csrf_test_func(request):
+    data = json.loads(request.body)
+    return JsonResponse(data)
 
-def testAnswer(request):
-    # mat = request.POST.get('matrix')
-    # mat = input.Interpreter.intepretAs('Determinant', mat)
-    # mono = expression.Monomial(mat)
-    # ans = expression.Polynomial()
-    # ans.append(mono)
-    # ans = det.LEbyStep(ans)
-    # return render(request, 'demo/testAnswer.html', {'answer': ans.htmlStr()})
-    pass
+def csrf_page(request):
+    return render(request, 'demo/csrfTest.html')
