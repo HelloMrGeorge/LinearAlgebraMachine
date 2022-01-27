@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'demo',
     'determinant',
     'eigen',
+    'quad',
 ]
 
 MIDDLEWARE = [
