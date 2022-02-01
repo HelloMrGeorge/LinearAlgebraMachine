@@ -7,17 +7,23 @@ class LinequSolver:
     '''
     线性方程组Ax = b的求解器
     '''
-    def __init__(self, mat: MutableDenseMatrix, vec: MutableDenseMatrix) -> None:
+    def __init__(self, mat: MutableDenseMatrix, vec: MutableDenseMatrix, evaluate=True) -> None:
         self.mat: MutableDenseMatrix = mat # 方程左端的矩阵A
         self.vec: MutableDenseMatrix = vec # 方程右端的常数项b
         self.Ab: MutableDenseMatrix = sp.Matrix.hstack(mat, vec) # A和b构成的扩增矩阵[A,b]
         self.elimination_course: List[MutableDenseMatrix] = [] # 存储阶梯化矩阵的过程
         self.solveset: tuple = () # 存储方程的解集
+        self.evaluate = False # 标记是否已经求解
+
+        if evaluate:
+            self.get_course()
+            self.evaluate = True
 
     
     def get_course(self) -> None:
-        self.reduce_row()
-        self.solve_echelon()
+        if not self.evaluate:
+            self.reduce_row()
+            self.solve_echelon()
 
     def reduce_row(self) -> None:
         '''

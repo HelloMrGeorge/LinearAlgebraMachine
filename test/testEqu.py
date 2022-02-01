@@ -1,7 +1,7 @@
 import sympy as sp
 from sympy.parsing.latex import parse_latex
 import lam.linequ.guasselimination as guasselimination
-import linequsolver
+import lam.linequ.linequsolver as linequsolver
 
 def test1():
     mat = [
@@ -29,11 +29,10 @@ def test2():
     ]
     vec = sp.Matrix(vec)
     solver = linequsolver.LinequSolver(mat, vec)
-    solver.get_course()
     co1 = solver.elimination_course
     co2 = solver.solveset
     print(co1)
-    print(sp.latex(co2))
+    print(sp.latex(co2[1]))
 
 
 
