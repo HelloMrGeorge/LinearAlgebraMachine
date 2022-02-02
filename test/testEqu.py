@@ -32,7 +32,7 @@ def test2():
     co1 = solver.elimination_course
     co2 = solver.solveset
     print(co1)
-    print(sp.latex(co2[1]))
+    print(co2)
 
 
 
