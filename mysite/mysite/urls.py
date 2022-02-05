@@ -16,20 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+
 urlpatterns = [
     path('',  views.home_page),
     path('admin/', admin.site.urls),
 ]
 
-urlpatterns+=[
+urlpatterns += [
     path('demo/', include('demo.urls')),
 ]
-urlpatterns+=[
+
+urlpatterns += [
     path('eigen/',include('eigen.urls')),
 ]
-urlpatterns+=[
+
+urlpatterns += [
     path('determinant/',include('determinant.urls')),
 ]
 
-
-
+urlpatterns += [
+    path('linequ/',include('linequ.urls')),
+]

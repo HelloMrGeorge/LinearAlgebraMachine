@@ -30,20 +30,20 @@ class Lambda_linsolver:
             self.evaluate = True
 
     def get_course(self) -> None:
+        if not self.evaluate:
+            self.determinat = self.mA.det()
+            self.factorization = sp.factor(self.determinat)
+            self.root = sp.solveset(self.determinat)
 
-        self.determinat = self.mA.det()
-        self.factorization = sp.factor(self.determinat)
-        self.root = sp.solveset(self.determinat)
+            if self.root.is_empty:
+                self.root = ()
+            else: # 如果self.determinat有实根(默认实数)，则讨论行列式等于0的情况
+                self.root = self.root.args
+                for rt in self.root:
+                    self.LQS_list.append(LinequSolver(self.mA.subs(self.lam, rt), self.mb.subs(self.lam, rt)))
 
-        if self.root.is_empty:
-            self.root = ()
-        else: # 如果self.determinat有实根(默认实数)，则讨论行列式等于0的情况
-            self.root = self.root.args
-            for rt in self.root:
-                self.LQS_list.append(LinequSolver(self.mA.subs(self.lam, rt), self.mb.subs(self.lam, rt)))
-
-        # 行列式不等于0的情况
-        self.LQS_nozero = LinequSolver(self.mA, self.mb)
+            # 行列式不等于0的情况
+            self.LQS_nozero = LinequSolver(self.mA, self.mb)
 
     def dict(self):
         '''

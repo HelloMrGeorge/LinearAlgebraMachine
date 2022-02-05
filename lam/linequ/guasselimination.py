@@ -7,12 +7,18 @@ class GESolver:
     执行高斯消元法的求解器
     '''
 
-    def __init__(self, mat: MutableDenseMatrix) -> None:
+    def __init__(self, mat: MutableDenseMatrix, evaluate = True) -> None:
         self.mat: MutableDenseMatrix = mat
         self.course: List[MutableDenseMatrix] = []
 
+        self.evaluate = False
+        if evaluate:
+            self.get_course()
+            self.evaluate = True
+
     def get_course(self) -> None:
-        self.reduce_row()
+        if not self.evaluate:
+            self.reduce_row()
 
     def reduce_row(self) -> None:
         #Gauss消元
