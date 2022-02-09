@@ -9,11 +9,9 @@
     <meta name="keywords" content="">
     <meta name="author" content="lam's contributors">
 
-    {% block head%}
-      <title>线性代数解题平台</title>
-    {% endblock head%}
-
     {% load static %}
+
+
 
     <!-- Bootstrap core CSS -->
 
@@ -24,13 +22,19 @@
     <link href="data:text/css;charset=utf-8," data-href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet" id="bs-theme-stylesheet">
 
     <!-- Documentation extras -->
-
-    <link href="{% static 'bootstrap/css/docs.min.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'bootstrap/css/docs.min.css' %}" rel="stylesheet"> -->
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="">
     <link rel="icon" href="">
 
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- Mathjax -->
     <script>
       MathJax = {
         tex: {
@@ -40,6 +44,13 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
     </script>
+
+    <!-- cookieFrame.js for csrf -->
+    <script src="{% static 'js/cookieFrame.js' %}"></script>
+
+    {% block head%}
+    <title>线性代数解题平台</title>
+    {% endblock head%}
 
   </head>
 
