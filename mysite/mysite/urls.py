@@ -34,6 +34,11 @@ urlpatterns += [
     path('determinant/',include('determinant.urls')),
 ]
 
+urlpatterns+=[
+    path('quad/',include('quad.urls')),
+]
+
 urlpatterns += [
     path('linequ/',include('linequ.urls')),
 ]
+
