@@ -9,18 +9,26 @@ logging.basicConfig(level=logging.DEBUG)
 
 def test1():
     mat = sp.Matrix([
-    [1,3,4,6],
-    [3,2,3,0],
-    [4,3,7,8],
-    [6,0,8,10]
+    [0,1,1,0],
+    [1,0,-3,0],
+    [1,-3,0,0],
+    [0,0,0,3]
     ])
     solver = QuadSolver(mat)
-    co = solver.get_course()
-    newco = []
-    for i in co:
-        newco.append(sp.latex(i[0]))
-        newco.append(sp.latex(i[1]))
-    logging.debug(newco)
+    logging.debug(solver.result)
+    logging.debug(solver.trans)
+    logging.debug(solver.mark)
+
+def test2():
+    mat = sp.Matrix([
+    [0,1,1,0],
+    [1,0,-3,0],
+    [1,-3,0,0],
+    [0,0,0,3]
+    ])
+    solver = QuadSolver(mat)
+    logging.debug(solver.dict())
+
 
 if __name__ == '__main__':
-    test1()
+    test2()

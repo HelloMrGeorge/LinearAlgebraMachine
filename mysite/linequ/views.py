@@ -1,4 +1,4 @@
-import json
+import json, sympy
 from django.http import JsonResponse
 from django.shortcuts import render
 from lam.readtext.readtext import readtext
@@ -20,3 +20,6 @@ def LinequSolver(request):
 
 def GESolverPage(request):
     return render(request, 'linequ/GESolverPage.html')
+
+def LinequSolverPage(request):
+    return render(request, 'linequ/LinequSolverPage.html')

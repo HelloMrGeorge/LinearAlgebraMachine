@@ -37,7 +37,7 @@
         headers: {'X-csrftoken':csrftoken},
         body: JSON.stringify({matrix: value}),
       };
-      var myRequest = new Request("{% url 'LinequSolver' %}", myInit);
+      var myRequest = new Request("{% url 'eigenCourse' %}", myInit);
       fetch(myRequest)
       .then(response => response.json())
       .then(data => {

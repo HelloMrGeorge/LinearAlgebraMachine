@@ -3,11 +3,10 @@
 {% load static %}
 
 {% block head %}
-<title> 高斯消去法 </title>
+<title> 解线性方程组 </title>
 {% endblock head %}
 
 {% block body %}
-
 
 <!-- 主内容 -->
 <main>
@@ -17,11 +16,15 @@
       <div role="main" class="col-md-9">
 
         <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">解线性方程组</h3>
+          </div>
+
           <div class="panel-body">
             <form class="form-horizontal">
-              <label for="matrix" class="col-md-2 control-label">输入矩阵</label>
+              <label for="matrix" class="col-md-2 control-label">输入增广矩阵</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="matrix" value="[[1,3,4], [2,3,4], [3,4,5]]">
+                <input type="text" class="form-control" id="matrix" value="[[1,1,1,1], [2,2,2,2], [3,3,3,3]]">
               </div>
               <div class="col-md-1">
                 <button type="button" class="btn btn-default" id="submit">提交</button>
@@ -35,17 +38,23 @@
             <h3 class="panel-title">问题解答</h3>
           </div>
 
-          <div class="panel-body" id="answer-area">
+          <div class="panel-body">
 
-            <div class="panel panel-default" id="start-answer" hidden>
+            <div class="panel panel-default" id="start-area" hidden>
               <div class="panel-body">
-                $A$ = <span id="start-matrix"></span>
+                $AX = b，$其中$A=$ <span id="startA"></span>，$b=$ <span id="startb"></span>，记增广矩阵$C = (A, b)$
               </div>
             </div>
 
             <div class="panel panel-default" id="course-area" hidden>
               <div class="panel-body">
-                $A$ <span id="course"></span>
+                $C$ <span id="course"></span>
+              </div>
+            </div>
+
+            <div class="panel panel-default" id="solveset-area" hidden>
+              <div class="panel-body">
+                解得：<span id="solveset"></span>
               </div>
             </div>
 
@@ -81,21 +90,35 @@
       headers: {'X-csrftoken':csrftoken},
       body: JSON.stringify({matrix: value}),
     };
-    var myRequest = new Request("{% url 'GESolver' %}", myInit);
+    var myRequest = new Request("{% url 'LinequSolver' %}", myInit);
     fetch(myRequest)
     .then(response => response.json())
     .then(data => {
       console.log(data);
 
-      document.getElementById('start-matrix').innerHTML = `$${data.mat}$`;
-      document.getElementById('start-answer').hidden = false;
+      document.getElementById('startA').innerHTML = `$${data.mat}$`
+      document.getElementById('startb').innerHTML = `$${data.vec}$`
+      document.getElementById('start-area').hidden = false
 
       let course = '';
-      for(let i = 0; i < data.course.length; i++) {
-        course = course + `$\\rightarrow ${data.course[i]}$`;
+      for(let i = 0; i < data.elimination_course.length; i++) {
+        course = course + `$\\rightarrow ${data.elimination_course[i]}$`;
       }
       document.getElementById('course').innerHTML = course;
       document.getElementById('course-area').hidden = false;
+
+      course = '';
+      if(data.solveset.length <= 0) {
+        document.getElementById('solveset').innerHTML = '无解';
+      } else {
+        for(let i = 0; i < data.solveset.length; i++) {
+        course = course + `x_${i+1} = & ${data.solveset[i]} \\\\`;
+        }
+        course = course.substring(0, course.length - 3)
+        course = `$\\left\\{\\begin{matrix} ${course} \\end{matrix}\\right.$`;
+        document.getElementById('solveset').innerHTML = course;
+      }
+      document.getElementById('solveset-area').hidden = false;
 
       MathJax.typeset();
     });
