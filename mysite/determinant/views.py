@@ -22,3 +22,6 @@ def answer(request):
 
 def HOME(request):
     return render(request,'deter.html')
+
+def eigenvalue(request):
+    return render(request,'eigenvalue.html')
