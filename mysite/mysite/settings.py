@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'determinant',
     'eigen',
     'quad',
+    'linequ',
 ]
 
 MIDDLEWARE = [

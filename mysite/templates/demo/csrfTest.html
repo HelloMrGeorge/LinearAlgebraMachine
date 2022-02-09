@@ -1,23 +1,19 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="lam's contributors">
+{% extends "csstemplate.html" %}
 
-  <title>csrf test</title>
-  {% load static %}
+{% load static %}
+
+{% block head %}
+  <title>csrf测试</title>
   <script src="{% static 'js/cookieFrame.js' %}"></script>
-</head>
-<body>
+{% endblock head %}
 
+{% block body %}
   <div>
     <p>
       测试csrf
     </p>
     <p id="text">
-      233
+      crsf尚未验证
     </p>
   </div>
 
@@ -37,9 +33,9 @@
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      textarea.innerHTML = data.matrix
+      textarea.innerHTML = data.matrix + "csrf验证成功"
     });
   </script>
-</body>
-</html>
+{% endblock body %}
+  
 

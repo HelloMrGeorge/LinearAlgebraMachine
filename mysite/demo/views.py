@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -22,3 +23,10 @@ def gaussElim(request):
 
 def testPage(request):
     return render(request, 'demo/testPage.html')
+
+def csrf_test_func(request):
+    data = json.loads(request.body)
+    return JsonResponse(data)
+
+def csrf_page(request):
+    return render(request, 'demo/csrfTest.html')

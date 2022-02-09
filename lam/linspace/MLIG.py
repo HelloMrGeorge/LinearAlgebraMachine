@@ -5,7 +5,7 @@ from typing import Any
 from lam.linspace.lincombination import is_lincombination
 
 
-class MLIGSolver():
+class MLIGSolver:
     '''
     极大无关组求解器，注意为了兼容抽象的向量，构造方法中只能用列表装向量，不能直接用矩阵
     '''

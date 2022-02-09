@@ -10,7 +10,6 @@ logging.basicConfig(level=logging.WARN, filename='mylog.txt', filemode='w')
 def determinant(request):
     return render(request, 'demo/deterPage.html')
 
-
 def answer(request):
     mat = json.loads(request.body)['matrix']
     slvdeter.slvdeter(mat)
@@ -20,15 +19,6 @@ def answer(request):
         logging.debug(jsondata)
         logging.debug(type(jsondata))
     return JsonResponse(jsondata)
-
-def test(request):
-    data = json.loads(request.body)
-    logging.debug(data)
-    logging.debug(type(data))
-    return JsonResponse(data)
-
-def csrftest(request):
-    return render(request, 'crsfTest.html')
 
 def HOME(request):
     return render(request,'deter.html')
