@@ -45,3 +45,7 @@ urlpatterns += [
 urlpatterns += [
     path('metric/',include('metric.urls')),
 ]
+
+urlpatterns += [
+    path('linspace/',include('linspace.urls')),
+]

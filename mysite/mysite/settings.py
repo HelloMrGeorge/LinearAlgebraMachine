@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'eigen',
     'quad',
     'linequ',
+    'linspace',
     'metric',
 ]
 
