@@ -17,14 +17,14 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">计算二次型标准形</h3>
+            <h3 class="panel-title">向量正交化</h3>
           </div>
 
           <div class="panel-body">
             <form class="form-horizontal">
-              <label for="matrix" class="col-md-2 control-label">输入二次型矩阵</label>
+              <label for="matrix" class="col-md-2 control-label">输入向量</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="matrix" value="[[0,1,1,0],[1,0,-3,0],[1,-3,0,0],[0,0,0,3]]">
+                <input type="text" class="form-control" id="matrix" value="[[1,1,0,0],[1,0,1,0],[-1,0,0,1],[1,-1,-1,1]]">
               </div>
               <div class="col-md-1">
                 <button type="button" class="btn btn-default" id="submit">提交</button>
@@ -40,13 +40,17 @@
 
           <div class="panel-body" id="answer-area">
 
-            <div class="panel panel-default" id="start-area" hidden>
-              <div class="panel-body">
-                $A_0=$ <span id="startMat"></span>
+            <div class="panel panel-default" id="start_area" hidden>
+              <div class="panel-body" id="start_vector">
               </div>
             </div>
-            
+
             <div id="course_area"></div>
+            
+            <div class="panel panel-default" id="norm_area" hidden>
+              <div class="panel-body" id="norm_vector">
+              </div>
+            </div>
 
           </div>
         </div>
@@ -75,19 +79,30 @@
   const course_area = document.getElementById('course_area');
 
   function create_courese(data, i) {
-    // 生成每次变数替换的过程
+    // 生成每行求正交向量的过程
     let outerdiv = document.createElement('div');
     let innerdiv = document.createElement('div');
     outerdiv.className = 'panel panel-default';
     innerdiv.className = 'panel-body';
     outerdiv.appendChild(innerdiv);
-    let mark = '恒等变换得';
-    if(data.mark[i] == 'quad') {
-      mark = '配平方项得';
-    } else if(data.mark[i] == 'cross') {
-      mark = '消去交叉项得';
+
+    let course = `\\varepsilon_{${i+1}} = \\alpha_{${i+1}}`;
+    for(let j = 0; j < i; j++) {
+      course = course + `- \\frac{(\\alpha_{${i+1}}, \\varepsilon_{${j+1}})}{(\\varepsilon_{${i+1}}, \\varepsilon_{${j+1}})} \\varepsilon_{${j+1}}`;
     }
-    innerdiv.innerHTML = `变数替换:$T_{${i+1}} = ${data.trans[i]}$;${mark}:$A_{${i+1}} = T'_{${i+1}}A_{${i}}T_{${i+1}} = ${data.result[i]}$`;
+    course = course + `= \\alpha_{${i+1}}`;
+    for(let j = 0; j < i; j++) {
+      if (data.coef[i][j].charAt(0) == '-') {
+        // 防止出现连续的两个负号
+        course = course + `+ ${data.coef[i][j].substring(1)}\\varepsilon_{${j+1}}`;
+      } else {
+        course = course + `- ${data.coef[i][j]}\\varepsilon_{${j+1}}`;
+      }
+      
+    }
+    course = course + `= ${data.vecs[i]}`;
+    innerdiv.innerHTML = `$$${course}$$`;
+
     course_area.appendChild(outerdiv);
   }
 
@@ -98,19 +113,30 @@
       headers: {'X-csrftoken':csrftoken},
       body: JSON.stringify({matrix: value}),
     };
-    var myRequest = new Request("{% url 'QuadSolver' %}", myInit);
+    var myRequest = new Request("{% url 'SchmidtVectorSolver' %}", myInit);
     fetch(myRequest)
     .then(response => response.json())
     .then(data => {
       console.log(data);
 
-      document.getElementById('startMat').innerHTML = `$${data.mat}$`;
-      document.getElementById('start-area').hidden = false
+      let course = '';
+      for(let i = 0; i < data.mat.length; i++) {
+        course = course + `\\alpha_{${i+1}} = ${data.mat[i]},`;
+      }
+      document.getElementById('start_vector').innerHTML = `初始向量：$${course.substring(0, course.length - 1)}$`;
+      document.getElementById('start_area').hidden = false;
 
-      for(var i = 0; i < data.result.length; i++) {
+      for(let i = 0; i < data.vecs.length; i++) {
         create_courese(data, i)
       }
-      
+
+      course = '';
+      for(let i = 0; i < data.norm_vecs.length; i++) {
+        course = course + `\\varepsilon_{${i+1}}' = ${data.norm_vecs[i]},`;
+      }
+      document.getElementById('norm_vector').innerHTML = `单位化后得：$${course.substring(0, course.length - 1)}$`;
+      document.getElementById('norm_area').hidden = false;
+
       MathJax.typeset();
     });
   }
