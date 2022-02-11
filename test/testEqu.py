@@ -1,19 +1,17 @@
+import __init__
 import sympy as sp
-from sympy.parsing.latex import parse_latex
 import lam.linequ.guasselimination as guasselimination
 import lam.linequ.linequsolver as linequsolver
 
 def test1():
     mat = [
-        [1,sp.Rational(2,3),1,1],
-        [3,1,1,1],
-        [2,1,3,1],
+        [0,1,1],
+        [1,2,1],
+        [1,1,2],
     ]
     mat = sp.Matrix(mat)
     solver = guasselimination.GESolver(mat)
-    solver.get_course()
-    co = solver.course
-    print(co)
+    print(solver.course)
 
 def test2():
     mat = [
@@ -37,4 +35,4 @@ def test2():
 
 
 if __name__ == "__main__":
-    test2()
+    test1()

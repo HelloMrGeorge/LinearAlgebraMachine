@@ -59,13 +59,13 @@ function myCatch(value) {
 
         let course = '';
         for(let i = 0; i < data.group.length; i++) {
-          course = course + `\\alpha_{${i+1}} = ${data.group[i]},`;
+            course = course + `\\alpha_{${i+1}} = ${data.group[i]},`;
         }
         document.getElementById('start_vector').innerHTML = `初始向量：$${course.substring(0, course.length - 1)}$`;
         document.getElementById('start_area').hidden = false;
 
         for(let i = 1; i < data.group.length; i++) {
-          create_courese(data, i)
+            create_courese(data, i)
         }
 
         course = '';

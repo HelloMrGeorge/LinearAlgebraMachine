@@ -33,6 +33,7 @@ class GESolver:
                         self.course.append(mat.copy())
                         break
             #用主元所在的行消元
+            pivot = mat[pivot_rowInd, pivot_rowInd]
             for rowInd in range(pivot_rowInd+1, mat.shape[0]):
                 if mat[rowInd, pivot_rowInd] != 0:
                     k = -sp.Mul(mat[rowInd, pivot_rowInd], sp.Pow(pivot, -1))
