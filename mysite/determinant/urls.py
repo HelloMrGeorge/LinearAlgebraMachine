@@ -11,6 +11,3 @@ urlpatterns += [
     path('Determinantcalculator',views.HOME,name='HOME')
 ]
 
-urlpatterns = [
-    path('Eigenvalue',views.eigenvalue,name='eigenvalue')
-]
