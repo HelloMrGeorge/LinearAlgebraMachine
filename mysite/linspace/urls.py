@@ -2,9 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path('', views.LinequSolverPage),
-    # path('LinequSolver', views.LinequSolver, name='LinequSolver'),
-    # path('GESolver', views.GESolver, name='GESolver'),
-    # path('GESolverPage', views.GESolverPage, name='GESolverPage'),
-    # path('LinequSolverPage', views.LinequSolverPage, name='LinequSolverPage'),
+    path('', views.MLIGSolverPage),
+    path('MLIGSolverPage', views.MLIGSolverPage, name='MLIGSolverPage'),
+    path('MLIGSolver', views.MLIGSolver, name='MLIGSolver'),
 ]

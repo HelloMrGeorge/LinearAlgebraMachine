@@ -34,7 +34,7 @@ class MLIGSolver(CoreSolver):
 
         js['group'] = []
         for x in self.group:
-            js['group'].append(sp.latex(x))
+            js['group'].append(sp.latex(x.T))
 
         js['coef'] = []
         for x in self.coef:

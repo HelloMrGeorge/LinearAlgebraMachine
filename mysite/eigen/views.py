@@ -33,7 +33,5 @@ def eigencharpoly(request):
 
     return JsonResponse(jsondata, safe=False)
 
-
-def eigenvalue(request):
+def eigenvaluePage(request):
     return render(request,'eigenvalue.html')
-

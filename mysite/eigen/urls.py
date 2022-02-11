@@ -11,5 +11,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('Eigenvalue',views.eigenvalue,name='eigenvalue')
+
+    path('eigenvaluePage',views.eigenvaluePage,name='eigenvaluePage')
+
 ]

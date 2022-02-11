@@ -1,3 +1,4 @@
+import __init__
 import sympy as sp
 from sympy.abc import a
 from sympy import S, sqrt, RR
@@ -76,10 +77,19 @@ def testlambdalinequDict():
         [1, 1, a, a**2],
     ]
     mat = sp.Matrix(mat)
-    solver = lambdalinequ.Lambda_linsolver(mat, a)
-    traverse_dict(solver.dict(), '')
+    solver = lambdalinequ.LambdaLinSolver(mat, a)
+    print(solver.dict())
 
+def testRank():
+    mat = [
+        [a, 1, 1, 1],
+        [1, a, 1, a],
+        [1, 1, a, a**2],
+    ]
+    mat = sp.Matrix(mat)
+    print(mat.rank())
+    print(mat[:,:-1].rank())
 
 
 if __name__ == "__main__":
-    testLinequjson()
+    testRank()
