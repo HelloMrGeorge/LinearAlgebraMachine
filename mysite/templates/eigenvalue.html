@@ -50,7 +50,7 @@
   <style>
     .col1 {
       width: 800px;
-      height: 80px;
+      height: 1200px;
       background-color: beige;
     }
   </style>
@@ -166,33 +166,12 @@
       <td>
         <div class="col1" id="xkx03">
         </div>
-        <div class="col1" id="xkx04">
-        </div>
-        <div class="col1" id="xkx05">
-        </div>
-        <div class="col1" id="xkx06">
-        </div>
-        <div class="col1" id="xkx07">
-        </div>
-        <div class="col1" id="xkx08">
-        </div>
-        <div class="col1" id="xkx09">
-        </div>
-        <div class="col1" id="xkx010">
-        </div>
       </td>
     </tr>
     <script>
       const tex = document.getElementById('xkx01');
       const btn1 = document.getElementById('xkx02');
       const texa1 = document.getElementById('xkx03');
-      const texa2 = document.getElementById('xkx04');
-      const texa3 = document.getElementById('xkx05');
-      const texa4 = document.getElementById('xkx06');
-      const texa5 = document.getElementById('xkx07');
-      const texa6 = document.getElementById('xkx08');
-      const texa7 = document.getElementById('xkx09');
-      const texa8 = document.getElementById('xkx010');
       function catch1(value) {
         fetch(`{% url 'eigenCourse' %}`, {
           method: 'POST',
@@ -213,39 +192,36 @@
             var xunhuan4=''
             xunhuan4=xunhuan4+`$${response.lambdamat}$`;
 
-            var A=''
-            A=A+`\\lambda_2=${(response.eigenvectors[0])[0]}$`;
+            var A='';
+            A=A+`\\lambda_1=${(response.eigenvectors[0])[0]} $&nbsp&nbsp&nbsp&nbsp$ $`
+            for(var i=1;i<response.eigenvectors.length;i++){
+            A=A+`$\\lambda_${i+1}=${(response.eigenvectors[i])[0]} $&nbsp&nbsp&nbsp&nbsp `;
+
+            }
+        
+            var B='';
+            var C=0;
+            for(var i=0;i<response.lambdamatvalue.length;i++){
+              if(i==0){
+              B=B+`(\\lambda_${i+1} E-A)\X=${response.lambdamatvalue[i]} $&nbsp&nbsp&nbsp&nbsp$ \X=0 $ <br> <br> `;
+              }
+              else{
+              B=B+`$(\\lambda_${i+1} E-A)\X=${response.lambdamatvalue[i]} $&nbsp&nbsp&nbsp&nbsp$ \X=0 $ <br> <br> `;
+              }
+              for(var j=0;j<((response.eigenvectors[i])[2]).length;j++){
+                C=C+1;
+                if(j==0){
+                B=B+`$\X_${C}=${((response.eigenvectors[i])[2])[j]}$ <br> <br> `;
+                }
+                else{
+                B=B+`$\X_${C}=${((response.eigenvectors[i])[2])[j]}$ <br> <br> `;
+                }
+              }
+            }
             
-            var B=''
-            B=B+`\\lambda_1=${(response.eigenvectors[1])[0]}$`;
-
-            var C=''
-            C=C+`\X_1=${(response.eigenvectors[1])[2]}$`;
-
-            var D=''
-            D=D+`(\\lambda_1 E-A)\X=${response.lambdamatvalue[0]} $&nbsp&nbsp&nbsp&nbsp$ \X=0 $`
-
-            var E=''
-            E=E+`(\\lambda_2 E-A)\X=${response.lambdamatvalue[1]} $&nbsp&nbsp&nbsp&nbsp$ \X=0 $`
-
-            var F=''
-            F=F+`\X_2=${((response.eigenvectors[0])[2])[0]}`;
-
-            var G=''
-            G=G+`\X_3=${((response.eigenvectors[0])[2])[1]}`;
 
 
-
-            texa1.innerHTML = `\A=${xunhuan1}`;
-            texa2.innerHTML = `$|\\lambda E-A|$=${xunhuan4}`;
-            texa3.innerHTML = `${xunhuan2}`;
-            texa4.innerHTML = `$${B}$ $&nbsp&nbsp&nbsp&nbsp$ ${A}`;
-            texa5.innerHTML = `$${D}`;
-            texa6.innerHTML = `$${C}`;
-            texa7.innerHTML = `$${E}`;
-            texa8.innerHTML = `$${F}$ $&nbsp&nbsp&nbsp&nbsp$ $${G}$`;
-
-
+            texa1.innerHTML = `\A=${xunhuan1} <br> <br> $|\\lambda E-A|$=${xunhuan4} <br> <br> ${xunhuan2} <br>  <br> $${A} <br> <br> $${B}`;
             MathJax.typeset();
           })
       }
