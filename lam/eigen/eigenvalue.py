@@ -26,7 +26,7 @@ class EigenSolver:
 
 def getCharpoly(mat: sp.MutableDenseMatrix, simplify = sp.simplify) -> sp.PurePoly:
     #封装了sympy的charpoly()方法，请不要在矩阵中加入含lambda的变量，因为默认特征多项式的自变量的是lambda
-    return mat.charpoly(simplify = simplify)
+    return mat.charpoly(simplify = simplify).args[0]
 
 def getEigenvalues(mat: sp.MutableDenseMatrix, error_when_incomplete=True, **flags):
     return mat.eigenvals(error_when_incomplete=error_when_incomplete, **flags)

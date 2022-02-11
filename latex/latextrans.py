@@ -20,7 +20,7 @@ def raw(text):
     return new_string
 def latextrans(formula:str):
     formula=raw(formula)
-    
+
     formula=formula.split('{matrix}')[1]
     formula=formula.split('\end')[0]
     formula=formula.split(r'\\\\')[0:-1]
