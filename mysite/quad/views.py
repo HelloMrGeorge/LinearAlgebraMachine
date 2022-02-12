@@ -12,3 +12,4 @@ def quadCourse(request):
     jsondata=slvquad.slvget_course(mat)
     logging.debug(jsondata)
     return JsonResponse(jsondata, safe=False)
+

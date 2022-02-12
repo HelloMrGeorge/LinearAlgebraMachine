@@ -7,6 +7,8 @@ from lam.quad.quadratic import *
 def slvget_course(a:str):
     quadSorver=QuadSolver(readtext(a))
     m=quadSorver.get_course()
+    print(m)
+    m=sp.latex(m)
     return m
 if __name__ == "__main__":
     print(slvget_course("[[1,3,4,6],[3,2,3,0],[4,3,7,8],[6,0,8,10]]"))

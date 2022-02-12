@@ -1,7 +1,6 @@
 import sympy as sp
 from sympy.abc import *
-from sympy.parsing.sympy_parser import parse_expr,standard_transformations,implicit_application,function_exponentiation
-
+from sympy.parsing.latex import parse_latex
 escape_dict = \
     {
         '\a': r'\a', '\b': r'\b', '\c': r'\c', '\f': r'\f', '\n': r'\n', '\r': r'\r', '\t': r'\t', '\v': r'\v',
@@ -19,21 +18,21 @@ def raw(text):
         except KeyError: new_string += char
     return new_string
 def latextrans(formula:str):
-    formula=raw(formula)
-
     formula=formula.split('{matrix}')[1]
     formula=formula.split('\end')[0]
-    formula=formula.split(r'\\\\')[0:-1]
+    print(formula)
+    formula=formula.split(r'\\')[0:-1]
     matrix=[]
     for i in range(len(formula)):
-        matrix.append([])
-        matrix[i].append(formula[i].split('&'))
+        matrix.append(formula[i].split('&'))
     result=matrix
     return result
-def standard_transformation(matrix):
-    if type(matrix)==list:
-        for i in matrix:
-            return 0
-    else:
-        return 0
-print(latextrans('\left[ \begin{matrix}56&56&56&6\\5&4&2&1\\a&\alpha&\delta&\theta\\\gamma&\sqrt{\lambda}&\frac{\alpha}{\beta}&\sqrt{\frac{\chi}{\eta}}\\\end{matrix} \right] '))
+def standard_transformation(matrix:list):
+    print(matrix)
+    result=[]
+    for i in range(len(matrix)):
+        result.append([])
+        for j in range(len(matrix[0])):
+            print(matrix[i][j])
+            result[i].append(parse_latex(matrix[i][j]))
+    return result
