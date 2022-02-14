@@ -4,11 +4,10 @@ const root_course_area = document.getElementById('root_course_area');
 
 function creatRootCourse(data, i) {
     // 每行生成每个根的解方程过程
-    let outerdiv = document.createElement('div');
-    let innerdiv = document.createElement('div');
-    outerdiv.className = 'panel panel-default';
-    innerdiv.className = 'panel-body';
-    outerdiv.appendChild(innerdiv);
+
+    let ls = creatButtonPanel(root_course_area);
+    let content = ls[0];
+    let btn = ls[1];
 
     let course = `当$ ${data.lam} = ${data.root[i]}$时，`;
     if(data.LQS_list[i].solveset.length == 0) {
@@ -21,8 +20,37 @@ function creatRootCourse(data, i) {
         }
         course += `解得$\\left\\{\\begin{matrix} ${solveset.substring(0, solveset.length-3)} \\end{matrix}\\right.$`;
     }
-    innerdiv.innerHTML = course;
-    root_course_area.appendChild(outerdiv);
+
+    content.innerHTML = course;
+    btn.innerHTML = '详解';
+}
+
+function creatButtonPanel(ele) {
+    // 生成一个带按钮的面板，用于显示一行解题过程
+    // ele是面板所在的html元素
+    let layer1 = document.createElement('div');
+    let layer2 = document.createElement('div');
+    let layer3 = document.createElement('div');
+    let layer4 = document.createElement('div');
+    let layer5 = document.createElement('div'); //layer1-3从外到内，4,5并列
+
+    layer1.className = 'panel panel-default';
+    layer2.className = 'panel-body';
+    layer3.className = 'row';
+    layer4.className = 'col-md-10';
+    layer5.className = 'col-md-2';
+
+    ele.appendChild(layer1);
+    layer1.appendChild(layer2);
+    layer2.appendChild(layer3);
+    layer3.appendChild(layer4);
+    layer3.appendChild(layer5);
+
+    let btn = document.createElement('button');
+    btn.className = 'btn btn-default';
+    layer5.appendChild(btn);
+
+    return [layer4, btn]
 }
 
 function myCatch(value) {
