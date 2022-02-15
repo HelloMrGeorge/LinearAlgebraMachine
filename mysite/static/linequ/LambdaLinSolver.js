@@ -110,6 +110,6 @@ btn.addEventListener('click', () => {
         root_course_area.removeChild(childs[i]); 
     }
 
-    var matrix = document.getElementById('matrix').value;
-    myCatch(matrix);
+    myCatch(document.getElementById('matrix').value);
+
 })
