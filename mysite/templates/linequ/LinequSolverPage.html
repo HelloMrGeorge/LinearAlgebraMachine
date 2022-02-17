@@ -38,29 +38,9 @@
             <h3 class="panel-title">问题解答</h3>
           </div>
 
-          <div class="panel-body">
-
-            <div class="panel panel-default" id="start-area" hidden>
-              <div class="panel-body">
-                $AX = b，$其中$A=$ <span id="startA"></span>，$b=$ <span id="startb"></span>，记增广矩阵$C = (A, b)$
-              </div>
-            </div>
-
-            <div class="panel panel-default" id="course-area" hidden>
-              <div class="panel-body">
-                $C$ <span id="course"></span>
-              </div>
-            </div>
-
-            <div class="panel panel-default" id="solveset-area" hidden>
-              <div class="panel-body">
-                解得：<span id="solveset"></span>
-              </div>
-            </div>
-
-          </div>
+          <div class="panel-body" id="course-area"></div>
         </div>
-
+      
       </div>
 
       <!-- 侧边栏 -->
@@ -73,60 +53,29 @@
           <li class="list-group-item"><a href="#">二次型</a></li>
         </ul>
       </div>
-      
-    </div>
   </div>
 </main>
 
 <!-- 答案生成代码 -->
 <script>
-  const csrftoken = docCookies.getItem('csrftoken');
-  const btn = document.getElementById('submit');
 
-  function myCatch(value) {
-    var myInit = { 
+  $('#submit').click(() => {
+    $('#course-area').empty();
+
+    let initHead = {
       method: 'POST',
-      mode: 'cors',
-      headers: {'X-csrftoken':csrftoken},
-      body: JSON.stringify({matrix: value}),
+      mode: 'same-origin',
+      headers: {'X-csrftoken': docCookies.getItem('csrftoken')},
+      body: JSON.stringify({matrix: $('#matrix').val()}),
     };
-    var myRequest = new Request("{% url 'LinequSolver' %}", myInit);
-    fetch(myRequest)
+
+    fetch(new Request("{% url 'LinequSolver' %}", initHead))
     .then(response => response.json())
     .then(data => {
       console.log(data);
-
-      document.getElementById('startA').innerHTML = `$${data.mat}$`
-      document.getElementById('startb').innerHTML = `$${data.vec}$`
-      document.getElementById('start-area').hidden = false
-
-      let course = '';
-      for(let i = 0; i < data.elimination_course.length; i++) {
-        course = course + `$\\rightarrow ${data.elimination_course[i]}$`;
-      }
-      document.getElementById('course').innerHTML = course;
-      document.getElementById('course-area').hidden = false;
-
-      course = '';
-      if(data.solveset.length <= 0) {
-        document.getElementById('solveset').innerHTML = '无解';
-      } else {
-        for(let i = 0; i < data.solveset.length; i++) {
-        course = course + `x_${i+1} = & ${data.solveset[i]} \\\\`;
-        }
-        course = course.substring(0, course.length - 3)
-        course = `$\\left\\{\\begin{matrix} ${course} \\end{matrix}\\right.$`;
-        document.getElementById('solveset').innerHTML = course;
-      }
-      document.getElementById('solveset-area').hidden = false;
-
+      loadLinequData(data, document.getElementById('course-area'));
       MathJax.typeset();
     });
-  }
-
-  btn.addEventListener('click', () => {
-    var matrix = document.getElementById('matrix').value;
-    myCatch(matrix);
   })
 </script>
 

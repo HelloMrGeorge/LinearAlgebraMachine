@@ -26,9 +26,9 @@
               <div class="col-md-7">
                 <input type="text" class="form-control" id="matrix" value="[[0, 1, 1],[1, 2, 1],[1, 1, 2]]">
               </div>
-              <label for="matrix" class="col-md-1 control-label">讨论参数</label>
+              <label for="lambda" class="col-md-1 control-label">讨论参数</label>
               <div class="col-md-2">
-                <input type="text" class="form-control" id="matrix" value="a">
+                <input type="text" class="form-control" id="lambda" value="a">
               </div>
               <div class="col-md-1">
                 <button type="button" class="btn btn-default" id="submit">提交</button>
@@ -43,7 +43,8 @@
             <h3 class="panel-title">问题解答</h3>
           </div>
 
-          <div class="panel-body">
+          <div class="panel-body" id="course-area"></div>
+          <!-- <div class="panel-body">
 
             <div class="panel panel-default" id="start_area" hidden>
               <div class="panel-body" id="start">
@@ -66,7 +67,7 @@
               <div class="panel-body" id="nozero">
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -87,7 +88,28 @@
 </main>
 
 <!-- 答案生成代码 -->
-<script> var SolverUrl = "{% url 'LambdaLinSolver' %}" </script>
-<script src="{% static 'linequ/LambdaLinSolver.js' %}"></script>
+<!-- <script> var SolverUrl = "{% url 'LambdaLinSolver' %}" </script>
+<script src="{% static 'linequ/LambdaLinSolver.js' %}"></script> -->
+
+<script>
+    $('#submit').click(() => {
+      $('#course-area').empty();
+
+      let initHead = {
+        method: 'POST',
+        mode: 'same-origin',
+        headers: {'X-csrftoken': docCookies.getItem('csrftoken')},
+        body: JSON.stringify({matrix: $('#matrix').val(), lambda: $('#lambda').val()}),
+      };
+
+      fetch(new Request("{% url 'LambdaLinSolver' %}", initHead))
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        loadLambdaLinData(data, document.getElementById('course-area'));
+        MathJax.typeset();
+      });
+    })
+</script>
 
 {% endblock body %}

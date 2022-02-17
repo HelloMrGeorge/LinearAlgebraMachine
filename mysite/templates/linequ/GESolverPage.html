@@ -71,14 +71,13 @@
 
 <!-- 答案生成代码 -->
 <script>
-  const csrftoken = docCookies.getItem('csrftoken');
   const btn = document.getElementById('submit');
 
   function myCatch(value) {
     var myInit = { 
       method: 'POST',
       mode: 'cors',
-      headers: {'X-csrftoken':csrftoken},
+      headers: {'X-csrftoken': docCookies.getItem('csrftoken')},
       body: JSON.stringify({matrix: value}),
     };
     var myRequest = new Request("{% url 'GESolver' %}", myInit);

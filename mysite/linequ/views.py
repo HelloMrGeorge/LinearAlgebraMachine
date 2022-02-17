@@ -1,6 +1,7 @@
 import json, sympy
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import ensure_csrf_cookie
 from sympy.abc import a
 from lam.readtext.readtext import readtext
 from lam.linequ import linequsolver, guasselimination, lambdalinequ, inverse
@@ -23,6 +24,7 @@ def LinequSolver(request):
     jsdata = linequsolver.LinequSolver(mat[:, :-1], mat[:, -1]).dict()
     return JsonResponse(jsdata)
 
+@ensure_csrf_cookie
 def LinequSolverPage(request):
     return render(request, 'linequ/LinequSolverPage.html')
 
@@ -36,7 +38,7 @@ def InverseSolver(request):
 def InverseSolverPage(request):
     return render(request, 'linequ/InverseSolverPage.html')
 
-
+@ensure_csrf_cookie
 def LambdaLinSolver(request):
     # mat = json.loads(request.body)['matrix']
     # mat = readtext(mat)
