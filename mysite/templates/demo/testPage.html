@@ -16,43 +16,25 @@
     <p>
       测试页面
     </p>
-    <input name="matrix" type="text" value="请输入你的问题" id="mat">
-    <button id="btnt">查询</button>
+    <input type="text" value="请输入你的问题" id="matrix">
+    <button id="btn">查询</button>
     <p id="text">
     </p>
   </div>
 
   <!-- {% csrf_token %} -->
+
+  <!-- jquery -->
+  <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+
+  <!-- cookieFrame.js for csrf -->
+  <script src="{% static 'js/cookieFrame.js' %}"></script>
+
+  <!-- test -->
   <script>
-    var csrftoken = docCookies.getItem('csrftoken');
-    var textarea = document.getElementById('text');
-    const btn = document.getElementById('btnt');
-    
-
-    function mycatch(value) {
-      console.log(value)
-      var myInit = { 
-        method: 'POST',
-        mode: 'cors',
-        headers: {'X-csrftoken':csrftoken},
-        body: JSON.stringify({matrix: value}),
-      };
-      var myRequest = new Request("{% url 'eigenCourse' %}", myInit);
-      fetch(myRequest)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        textarea.innerHTML = '已接收';
-      });
-    }
-
-    btn.addEventListener('click', () => {
-      const value = document.getElementById('mat').value;
-      mycatch(value);
-    })
-
-
+    SolverUrl = "{% url 'testSolver' %}";
   </script>
+  <script src="{% static 'js/lamTest.js' %}"></script>
 </body>
 </html>
 
