@@ -18,6 +18,7 @@ def quadCourse(request):
     return JsonResponse(jsondata, safe=False)
 
 
+
 # 新加入项
 def QuadSolverPage(request):
     return render(request, 'quad/QuadSolverPage.html')
@@ -27,3 +28,4 @@ def QuadSolver(request):
     mat = readtext(mat)
     jsdata = quadratic.QuadSolver(mat).dict()
     return JsonResponse(jsdata)
+
