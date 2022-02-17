@@ -9,3 +9,9 @@ urlpatterns = [
     path('eigenvalue',views.eigenvalue,name='eigenvalue'),
     path('eigencharpoly',views.eigencharpoly,name='eigencharpoly'),
 ]
+
+urlpatterns += [
+
+    path('eigenvaluePage',views.eigenvaluePage,name='eigenvaluePage')
+
+]

@@ -1,3 +1,4 @@
+import __init__
 import sympy as sp
 from lam.linspace.MLIG import MLIGSolver
 
@@ -7,7 +8,4 @@ if __name__ == "__main__":
     for i in range(len(A)):
         A[i] = sp.Matrix(A[i])
     solver = MLIGSolver(A)
-    co: MLIGSolver = solver.get_course()
-    print(co.coefs)
-    print(co.MLIG)
-    print(co.position)
+    print(solver.dict())

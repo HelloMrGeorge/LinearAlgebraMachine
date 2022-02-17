@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpRequest
 
 #尚未打包安装，请先将工具包加入环境变量，已改为相对路径，已在init文件处引入
 # import sys
@@ -28,5 +28,10 @@ def csrf_test_func(request):
     data = json.loads(request.body)
     return JsonResponse(data)
 
-def csrf_page(request):
+def csrf_page(request: HttpRequest):
     return render(request, 'demo/csrfTest.html')
+
+def testSolver(request: HttpRequest):
+    data = json.loads(request.body)['matrix']
+    data = {'matrix': data}
+    return JsonResponse(data)

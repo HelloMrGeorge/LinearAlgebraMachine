@@ -1,8 +1,8 @@
 import __init__
 import sympy as sp
-from sympy.abc import m, n, x, t
+from sympy.abc import x
 from sympy.core.function import Lambda
-from lam.metric.schmidt import Schmidt_orther
+from lam.metric.schmidt import Schmidt_orther, SchmidtVectorSolver
 from lam.metric.metricbase import vector_inner, poly_inner
 
 import logging
@@ -32,8 +32,18 @@ def test_func():
     fe, ge = f.expr, g.expr
     logging.debug(fe+ge+1)
 
+def testSchmidtVectorSolver():
+    data = [
+        [1,1,0,0],
+        [1,0,1,0],
+        [-1,0,0,1],
+        [1,-1,-1,1],
+    ]
+    data = sp.Matrix(data)
+    solver = SchmidtVectorSolver(data)
+    print(solver.toDict())
+    print(solver.coef)
+
+
 if __name__ == "__main__":
-    
-    # a = sp.Mul(sp.Pow(n/2, -1), m/2)
-    # logging.debug(a)
-    test_poly_orther()
+    testSchmidtVectorSolver()

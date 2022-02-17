@@ -22,3 +22,5 @@ def answer(request):
 
 def HOME(request):
     return render(request,'deter.html')
+
+

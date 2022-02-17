@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'eigen',
     'quad',
     'linequ',
+    'linspace',
+    'metric',
 ]
 
 MIDDLEWARE = [
@@ -51,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware', #cors
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware', #调试时关闭csrf验证，只有自己站点的网页才能通过csrf验证
+    'django.middleware.csrf.CsrfViewMiddleware', #调试时关闭csrf验证，只有自己站点的网页才能通过csrf验证
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
