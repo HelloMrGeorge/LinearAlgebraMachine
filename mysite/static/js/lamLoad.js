@@ -24,8 +24,7 @@ function loadLambdaLinData(data, ele) {
 
     function creatRootCourse(data, i) {
         // 每行生成每个根的解方程过程
-    
-        let [content, btn] = createButtonPanel(ele);
+        
     
         let course = `当$ ${data.lam} = ${data.root[i]}$时，`;
         if(data.LQS_list[i].solveset.length == 0) {
@@ -39,8 +38,10 @@ function loadLambdaLinData(data, ele) {
             course += `解得$\\left\\{\\begin{matrix} ${solveset.substring(0, solveset.length-3)} \\end{matrix}\\right.$`;
         }
     
-        content.text(course);
-        btn.text('详解');
+        createPanel(ele).text(course);
+
+        createTogglePanel(ele, `solve${i}`, '展开详细解方程过程', '')
+        loadLinequData(data.LQS_list[i], $(`#solve${i}`));
     }
 
     createPanel(ele).text(`$AX = b$，其中$A=${data.mA}$，$b=${data.mb}$，记增广矩阵$C = (A, b)$`);
@@ -69,4 +70,7 @@ function loadLambdaLinData(data, ele) {
     }
     course = `当$|A|=0$时，有唯一解： $$\\left\\{\\begin{matrix} ${course.substring(0, course.length-3)} \\end{matrix}\\right.$$`;
     createPanel(ele).text(course);
+
+    createTogglePanel(ele, `solve_nozero`, '展开详细解方程过程', '')
+    loadLinequData(data.LQS_nozero, $(`#solve_nozero`));
 }
