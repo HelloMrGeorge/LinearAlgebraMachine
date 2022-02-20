@@ -74,3 +74,37 @@ function loadLambdaLinData(data, ele) {
     createTogglePanel(ele, `solve_nozero`, '展开详细解方程过程', '')
     loadLinequData(data.LQS_nozero, $(`#solve_nozero`));
 }
+
+function loadDeterminantData(data, ele) {
+
+    createDefaultPanel(ele, `$A = ${data.mat}$`);
+
+    for(let i = 0; i < data.cofactor.length; i++) {
+        let content = '=';
+
+        if (data.operater[0][0] == '+') {
+            content += `$ ${data.coef[0][0]} ${data.cofactor[0][0]} $`;
+        } else {
+            content += `$ ${data.operater[0][0]} ${data.coef[0][0]} ${data.cofactor[0][0]} $`;
+        }
+
+        for(let j = 1; j < data.cofactor[i].length; j++) {
+            content += `$ ${data.operater[i][j]} ${data.coef[i][j]} ${data.cofactor[i][j]} $`;
+        }
+        createDefaultPanel(ele, content);
+    }
+
+    let content = '=';
+    if (data.result_operater[0] == '+') {
+        content += `$ ${data.result[0]} $`;
+    } else {
+        content += `$ ${data.result_operater[0]} ${data.result[0]} $`;
+    }
+    for(let i = 1; i < data.result.length; i++) {
+        content += `$ ${data.result_operater[i]} ${data.result[i]} $`;
+    }
+    createDefaultPanel(ele, content);
+
+    createDefaultPanel(ele, `=$ ${data.sum} $`);
+
+}

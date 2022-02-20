@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head %}
-<title> 含参线性方程组 </title>
+<title> 线性代数解题平台 </title>
 {% endblock head %}
 
 {% block body %}
@@ -17,18 +17,14 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"> 讨论含参线性方程组 </h3>
+            <h3 class="panel-title"> 展开行列式 </h3>
           </div>
 
           <div class="panel-body">
             <form class="form-horizontal">
-              <label for="matrix" class="col-md-1 control-label">增广矩阵</label>
-              <div class="col-md-7">
-                <input type="text" class="form-control" id="matrix" value="[[0, 1, 1],[1, 2, 1],[1, 1, 2]]">
-              </div>
-              <label for="lambda" class="col-md-1 control-label">讨论参数</label>
-              <div class="col-md-2">
-                <input type="text" class="form-control" id="lambda" value="a">
+              <label for="matrix" class="col-md-2 control-label">输入矩阵</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="matrix" value="[[1,1,1,3,4],[-2,2,2,3,2],[4,1,-1,-1,3],[1,7,3,2,5],[1,1,2,3,5]]">
               </div>
               <div class="col-md-1">
                 <button type="button" class="btn btn-default" id="submit">提交</button>
@@ -73,14 +69,14 @@
         method: 'POST',
         mode: 'same-origin',
         headers: {'X-csrftoken': docCookies.getItem('csrftoken')},
-        body: JSON.stringify({matrix: $('#matrix').val(), lambda: $('#lambda').val()}),
+        body: JSON.stringify({matrix: $('#matrix').val()}),
       };
 
-      fetch(new Request("{% url 'LambdaLinSolver' %}", initHead))
+      fetch(new Request("{% url 'DeterminantSolver' %}", initHead))
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        loadLambdaLinData(data, document.getElementById('course-area'));
+        loadDeterminantData(data, document.getElementById('course-area'))
         MathJax.typeset();
       });
     })
