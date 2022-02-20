@@ -28,11 +28,10 @@ def latextrans(formula:str):
     result=matrix
     return result
 def standard_transformation(matrix:list):
-    print(matrix)
     result=[]
     for i in range(len(matrix)):
         result.append([])
         for j in range(len(matrix[0])):
-            print(matrix[i][j])
             result[i].append(parse_latex(matrix[i][j]))
+    result=sp.Matrix(result)
     return result
