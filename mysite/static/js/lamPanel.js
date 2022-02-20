@@ -43,7 +43,16 @@ function createTogglePanel(ele, id, title, content) {
 
     let panel = $(`<div class="panel panel-default"><div class="panel-heading"><a data-toggle="collapse" href="#${id}-toggle"></a></div><div id="${id}-toggle" class="panel-collapse collapse"><div class="panel-body" id="${id}"></div></div></div>`);
 
-    $(panel).find('a').text(title);
+    panel.find('a').text(title);
     $(panel).find('.panel-body').append(content);
+    $(ele).append(panel);
+}
+
+function createDefaultPanel(ele, content) {
+    // 生成一个普通面板，是createPanel的改写
+    // ele是面板所在的html元素
+
+    let panel = $(`<div class="panel panel-default"><div class="panel-body"></div></div>`);
+    panel.find('.panel-body').append(content);
     $(ele).append(panel);
 }
