@@ -7,52 +7,103 @@
 {% endblock head %}
 
 {% block body %}
-<header class="navbar navbar-static-top bs-docs-nav" id="top">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
-        aria-controls="bs-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">LAM</a>
-    </div>
-    <nav id="bs-navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="/getting-started/">首页</a>
-        </li>
-        <li>
-          <a href="/css/">说明文档</a>
-        </li>
-        <li class="active">
-          <a href="/components/">求解器</a>
-        </li>
-        <li><a class="reddot" href="https://www.youzhan.org" onclick="_hmt.push(['_trackEvent', 'docv3-navbar', 'click', 'V3导航-网站实例'])" target="_blank">网站实例</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            联系我们 <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="https://v5.bootcss.com/">v5</a></li>
-            <li><a href="https://v4.bootcss.com/">v4</a></li>
-            <li class="divider"></li>
-            <li class="active"><a href="https://v3.bootcss.com/">v3</a></li>
-            <li><a href="https://v2.bootcss.com/">v2</a></li>
-          </ul>
-        </li>
-    </nav>
-  </div>
-</header>
 
-<div class="bs-docs-header" tabindex="-1" style="background-color:rgb(32, 189, 129); background-image:unset">
+
+<!-- 主内容 -->
+<main>
   <div class="container">
-    <h1>线性代数解题平台</h1>
+    <div class="row">
+      <!-- 内容 -->
+      <div role="main" class="col-md-9">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form class="form-horizontal">
+              <label for="matrix" class="col-md-2 control-label">输入矩阵</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="matrix" value="[[1,3,4], [2,3,4], [3,4,5]]">
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-default" id="submit">提交</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">问题解答</h3>
+          </div>
+
+          <div class="panel-body" id="answer-area">
+
+            <div class="panel panel-default" id="start-answer" hidden>
+              <div class="panel-body">
+                $A$ = <span id="start-matrix"></span>
+              </div>
+            </div>
+
+            <div class="panel panel-default" id="course-area" hidden>
+              <div class="panel-body">
+                $A$ <span id="course"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 侧边栏 -->
+      <div class="col-md-3" role="complementary">
+        <ul class="list-group">
+          <li class="list-group-item"><h3><a href="#">快捷导航</a></h3></li>
+          <li class="list-group-item"><a href="#">行列式</a></li>
+          <li class="list-group-item"><a href="#">线性方程</a></li>
+          <li class="list-group-item"><a href="#">特征值与特征向量</a></li>
+          <li class="list-group-item"><a href="#">二次型</a></li>
+        </ul>
+      </div>
+      
+    </div>
   </div>
-</div>
+</main>
+
+<!-- 答案生成代码 -->
+<script>
+  const btn = document.getElementById('submit');
+
+  function myCatch(value) {
+    var myInit = { 
+      method: 'POST',
+      mode: 'cors',
+      headers: {'X-csrftoken': docCookies.getItem('csrftoken')},
+      body: JSON.stringify({matrix: value}),
+    };
+    var myRequest = new Request("{% url 'GESolver' %}", myInit);
+    fetch(myRequest)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      document.getElementById('start-matrix').innerHTML = `$${data.mat}$`;
+      document.getElementById('start-answer').hidden = false;
+
+      let course = '';
+      for(let i = 0; i < data.course.length; i++) {
+        course = course + `$\\rightarrow ${data.course[i]}$`;
+      }
+      document.getElementById('course').innerHTML = course;
+      document.getElementById('course-area').hidden = false;
+
+      MathJax.typeset();
+    });
+  }
+
+  btn.addEventListener('click', () => {
+    var matrix = document.getElementById('matrix').value;
+    myCatch(matrix);
+  })
+</script>
+
 {% endblock body %}

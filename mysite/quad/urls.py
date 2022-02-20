@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('',views.quad,name='quad'),
-    path('quadCourse', views.quadCourse, name='quadCourse'),
+
+    path('',views.QuadSolverPage),
+    path('QuadSolver', views.QuadSolver, name='QuadSolver'),
+    path('QuadSolverPage', views.QuadSolverPage, name='QuadSolverPage'),
 ]
+

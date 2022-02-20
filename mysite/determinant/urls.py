@@ -10,3 +10,4 @@ urlpatterns = [
 urlpatterns += [
     path('Determinantcalculator',views.HOME,name='HOME')
 ]
+

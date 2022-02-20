@@ -39,14 +39,14 @@ def next_quad_op(mat: MutableDenseMatrix) -> MutableDenseMatrix:
     dim: int = mat.shape[0]
     for i in range(dim):
         if is_complete_square(mat, i) == False and mat[i,i] != 0:
-            return quad_term_trans(mat, i)
+            return quad_term_trans(mat, i), 'quad'
     
     for i in range(dim):
         for j in range(dim):
             if mat[i,j] != 0 and i != j:
-                return cross_term_trans(mat, i, j)
+                return cross_term_trans(mat, i, j), 'cross'
     
-    return eye(dim)
+    return eye(dim), 'none'
 
 if __name__ == "__main__":
     mat = sp.Matrix([

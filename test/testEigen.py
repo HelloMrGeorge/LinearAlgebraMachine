@@ -12,4 +12,5 @@ a = sp.Matrix([
 
 slv = EigenSolver(a)
 v = slv.get_course()
+v = v['charpoly']
 logging.debug(v)
