@@ -20,7 +20,6 @@ def raw(text):
 def latextrans(formula:str):
     formula=formula.split('{matrix}')[1]
     formula=formula.split('\end')[0]
-    print(formula)
     formula=formula.split(r'\\')[0:-1]
     matrix=[]
     for i in range(len(formula)):
@@ -35,3 +34,5 @@ def standard_transformation(matrix:list):
             result[i].append(parse_latex(matrix[i][j]))
     result=sp.Matrix(result)
     return result
+if __name__ == '__main__':
+    print(standard_transformation(latextrans(r'\left[\begin{matrix} 1 & 2 & 3 \\3.3 & 5.2 & 1.3 \\7 & 11 & 32 \end{matrix}\right]')))
