@@ -22,8 +22,9 @@ def QuadSolverPage(request):
     return render(request, 'quad/QuadSolverPage.html')
 
 def QuadSolver(request):
-    # mat = matParser(json.loads(request.body)['matrix'])
-    mat = readtext(json.loads(request.body)['matrix'])
+    mat = matParser(json.loads(request.body)['matrix'])
+    # mat = readtext(json.loads(request.body)['matrix'])
+    print(mat)
     jsdata = quadratic.QuadSolver(mat).dict()
     return JsonResponse(jsdata)
 

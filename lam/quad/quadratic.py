@@ -28,6 +28,7 @@ class QuadSolver:
             
             mat: MutableDenseMatrix = self.mat.copy()
             while mat.is_diagonal() == False:
+                # print(mat)
                 tran, mark = next_quad_op(mat)
                 mat = tran.T @ mat @ tran
                 self.trans.append(tran)
