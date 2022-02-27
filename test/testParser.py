@@ -4,7 +4,7 @@ lampy_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(lampy_dir))
 
 from latex.parser import matParser
-from lam.linequ.guasselimination import GESolver
+from lam.linequ.gausslimination import GESolver
 
 mat = matParser("[[a, 1, 1, 1],[1, a, 1, a],[1, 1, a, a^2]]")
 print(mat)

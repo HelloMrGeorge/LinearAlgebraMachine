@@ -1,7 +1,7 @@
 from typing import List
 import sympy as sp
 from sympy import MutableDenseMatrix, latex
-from lam.linequ.guasselimination import GESolver
+from lam.linequ.gausslimination import GESolver
 
 class LinequSolver:
     '''

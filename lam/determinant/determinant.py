@@ -1,6 +1,7 @@
 from typing import List, Tuple
 from sympy import MutableDenseMatrix, Expr, latex, simplify
 from lam.core.solver import CoreSolver
+from lam.linequ.gausslimination import GESolver
 
 
 # 重写行列式展开
@@ -71,5 +72,32 @@ class DeterminantSolver(CoreSolver):
             else:
                 js['result'].append(latex(x))
                 js['result_operater'].append('+')
+
+        return js
+
+# 高斯消元求行列式
+class GausseDeterminantSolver(CoreSolver):
+
+    def __init__(self, mat: MutableDenseMatrix, evaluate=True) -> None:
+        self.mat: MutableDenseMatrix = mat
+        self.GES: GESolver = None # 存储一个高斯消元法的求解器
+        self.result_mat = None # 存储化为阶梯型的矩阵
+        self.result = 1 # 存储行列式值
+        super().__init__(evaluate)
+
+    def toExecute(self) -> None:
+        self.GES = GESolver(self.mat)
+        self.result_mat = self.GES.course[-1]
+        for i in range(self.result_mat.shape[0]):
+            self.result *= self.result_mat[i,i]
+
+    def toDict(self) -> dict:
+        js = {}
+        js['GES'] = self.GES.dict()
+        js['result'] = latex(self.result)
+        
+        js['factor'] = []
+        for i in range(self.result_mat.shape[0]):
+            js['factor'].append(latex(self.result_mat[i,i]))
 
         return js
