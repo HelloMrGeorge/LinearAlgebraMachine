@@ -1,6 +1,6 @@
 import __init__
 import sympy as sp
-import lam.linequ.guasselimination as guasselimination
+import lam.linequ.gausslimination as gausslimination
 import lam.linequ.linequsolver as linequsolver
 
 def test1():
@@ -10,7 +10,7 @@ def test1():
         [1,1,2],
     ]
     mat = sp.Matrix(mat)
-    solver = guasselimination.GESolver(mat)
+    solver = gausslimination.GESolver(mat)
     print(solver.course)
 
 def test2():

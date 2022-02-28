@@ -1,3 +1,15 @@
+function loadGEData(data, ele) {
+
+    createDefaultPanel(ele, `$ A = ${data.mat} $`);
+
+    let content = '$A$';
+    for(let i = 0; i < data.course.length; i++) {
+        content = content + `$\\rightarrow ${data.course[i]}$`;
+    }
+    createDefaultPanel(ele, content);
+
+}
+
 function loadLinequData(data, ele) {
 
     createPanel(ele).text(`$AX = b，$其中$A=${data.mat}$，$b=${data.vec}$，记增广矩阵$C = (A, b)$`);
@@ -6,7 +18,7 @@ function loadLinequData(data, ele) {
     for(let i = 0; i < data.elimination_course.length; i++) {
         course = course + `$\\rightarrow ${data.elimination_course[i]}$`;
     }
-    createPanel(ele).text(course);;
+    createPanel(ele).text(course);
     
     if(data.solveset.length <= 0) {
         createPanel(ele).text('无解');
@@ -107,4 +119,15 @@ function loadDeterminantData(data, ele) {
 
     createDefaultPanel(ele, `=$ ${data.sum} $`);
 
+}
+
+function loadGaussDeterminantData(data, ele) {
+
+    loadGEData(data.GES, ele);
+
+    content = `A = ${data.factor[0]}`;
+    for(let i = 1; i < data.factor.length; i++) {
+        content += `\\times ${data.factor[i]}`;
+    }
+    createDefaultPanel(ele, `$ ${content} = ${data.result} $`);
 }
