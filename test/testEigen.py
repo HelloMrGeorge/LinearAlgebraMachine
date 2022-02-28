@@ -1,6 +1,7 @@
 from cgi import test
 import __init__
 from lam.eigen.eigen import *
+from lam.eigen.diagnoalize import *
 import sympy as sp
 import logging
 
@@ -27,7 +28,15 @@ def test2():
     # logging.debug(dc['equ_mat'])
     # logging.debug(dc['EVAS'])
 
+def test3():
+    sl = DiagSymmetricSolver(mat)
+    dc = sl.dict()
+    print(sl.EVES.result)
+    print(sl.matT)
+    print(sl.matD)
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
 
-    test2()
+    test3()
