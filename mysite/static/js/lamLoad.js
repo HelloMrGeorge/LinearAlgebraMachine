@@ -131,3 +131,28 @@ function loadGaussDeterminantData(data, ele) {
     }
     createDefaultPanel(ele, `$ ${content} = ${data.result} $`);
 }
+
+function loadEigenValueData(data, ele) {
+    createDefaultPanel(ele, `$ A = ${data.mat} $`);
+    createDefaultPanel(ele, `$ |\\lambda E - A| = ${data.lambda_mat} = ${data.charpoly} $`);
+
+    let content = `$  \\lambda_{1} = ${data.result[0][0]}  $`;
+    for(let i = 1; i < data.result.length; i++) {
+        content = content + `, $  \\lambda_{${i+1}} = ${data.result[i][0]} $`;
+    }
+    createDefaultPanel(ele, content);
+}
+
+function loadEigenVectorData(data, ele) {
+    loadEigenValueData(data.EVAS, ele);
+
+    for(let i = 0; i < data.result.length; i++) {
+        createDefaultPanel(ele, `$ (\\lambda_{${i+1}} E - A)X = ${data.equ_mat[i]}X = 0 $`);
+
+        let content = `$  X_{${i+1}1} = ${data.result[i][0]}  $`;
+        for(let j = 1; j < data.result[i].length; j++) {
+            content = content + `, $ X_{${i+1}${j+1}} = ${data.result[i][j]} $`;
+        }
+        createDefaultPanel(ele, content);
+    }
+}
