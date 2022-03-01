@@ -1,8 +1,8 @@
 import copy
 import sympy as sp
-from sympy import MutableDenseMatrix, symbols
-from sympy.abc import w, x, y, z
+from sympy import MutableDenseMatrix, symbols, latex
 from typing import List
+from lam.core.solver import CoreSolver
 
 
 
@@ -44,11 +44,34 @@ def is_lincombination(group: List, vect, coef: List = []) -> bool:
     return flag
 
 
-if __name__ == "__main__":
-    A = [[1,2,3,-1], [3,2,1,-1], [2,3,1,1], [2,2,2,-1]]
-    b = sp.Matrix([5,5,2,0])
-    for i in range(len(A)):
-        A[i] = sp.Matrix(A[i])
-    coef = []
-    is_lincombination(A, b, coef)
-    print(coef)
+class LincombinationSolver(CoreSolver):
+    # 对象化的判断线性组合的求解器
+    def __init__(self, mat: MutableDenseMatrix, vec: MutableDenseMatrix, evaluate=True) -> None:
+        self.mat: MutableDenseMatrix = mat # 线性组合的向量组
+        self.vec: MutableDenseMatrix = vec # 被判断的向量
+        self.coef: List = [] # 存储线性组合的系数
+        super().__init__(evaluate)
+
+    def toExecute(self) -> None:
+        vars = [] # 创建未知元，用以求解方程
+        for i in range(self.mat.shape[1]):
+            vars.append(symbols(f"x{i}"))
+        rs = sp.linsolve((self.mat, self.vec), vars)
+
+        if not rs.is_empty:
+            for x in rs.args[0]: #res是有限集，其参数可以被迭代器调用
+                for i in range(self.mat.shape[1]):
+                    x = x.subs(vars[i], 0)
+                self.coef.append(x)
+
+    def toDict(self) -> dict:
+        js = {}
+        js['mat'] = latex(self.mat)
+        js['vec'] = latex(self.vec)
+        js['coef'] = list(map(latex, self.coef))
+        ind = 0
+        for x in js['coef']: # 处理负号的连接问题，为有负号的字符串加括号
+            if x[0] == '-':
+                js['coef'][ind] = f'({x})'
+            ind += 1
+        return js
