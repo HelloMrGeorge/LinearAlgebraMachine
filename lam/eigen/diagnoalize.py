@@ -23,3 +23,11 @@ class DiagSymmetricSolver(CoreSolver):
                 self.matD[ind, ind] = x[0]
                 self.matT[:, ind] = y
                 ind += 1
+    
+    def toDict(self) -> dict:
+        js = {}
+        js['mat'] = latex(self.mat)
+        js['matT'] = latex(self.matT)
+        js['matD'] = latex(self.matD)
+        js['EVES'] = self.EVES.dict()
+        return js

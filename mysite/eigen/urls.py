@@ -10,4 +10,7 @@ urlpatterns = [
 
     path('EigenVectorSolverPage', views.EigenVectorSolverPage, name='EigenVectorSolverPage'),
     path('EigenVectorSolver', views.EigenVectorSolver, name='EigenVectorSolver'),
+
+    path('DiagSymmetricSolverPage', views.DiagSymmetricSolverPage, name='DiagSymmetricSolverPage'),
+    path('DiagSymmetricSolver', views.DiagSymmetricSolver, name='DiagSymmetricSolver'),
 ]

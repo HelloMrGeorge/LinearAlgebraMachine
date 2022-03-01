@@ -24,7 +24,7 @@
             <form class="form-horizontal">
               <label for="matrix" class="col-md-2 control-label">输入矩阵</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" id="matrix" value="[[5,6,-3],[-1,0,1],[1,2,-1]]">
+                <input type="text" class="form-control" id="matrix" value="[[1,2,2],[2,1,2],[2,2,1]]">
               </div>
               <div class="col-md-1">
                 <button type="button" class="btn btn-default" id="submit">提交</button>
@@ -49,7 +49,7 @@
         <ul class="list-group">
           <li class="list-group-item"><h3><a href="#">快捷导航</a></h3></li>
           <li class="list-group-item"><a href="{% url 'DeterminantSolverPage' %}">展开行列式</a></li>
-          <li class="list-group-item"><a href="{% url 'DiagSymmetricSolverPage' %}">矩阵对角化</a></li>
+          <li class="list-group-item"><a href="#">线性方程</a></li>
           <li class="list-group-item"><a href="#">特征值与特征向量</a></li>
           <li class="list-group-item"><a href="#">二次型</a></li>
         </ul>
@@ -72,11 +72,11 @@
         body: JSON.stringify({matrix: $('#matrix').val()}),
       };
 
-      fetch(new Request("{% url 'EigenValueSolver' %}", initHead))
+      fetch(new Request("{% url 'DiagSymmetricSolver' %}", initHead))
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        loadEigenValueData(data, document.getElementById('course-area'))
+        loadDiagSymmetricData(data, document.getElementById('course-area'))
         MathJax.typeset();
       });
     })

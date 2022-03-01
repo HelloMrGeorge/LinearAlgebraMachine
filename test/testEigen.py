@@ -31,9 +31,7 @@ def test2():
 def test3():
     sl = DiagSymmetricSolver(mat)
     dc = sl.dict()
-    print(sl.EVES.result)
-    print(sl.matT)
-    print(sl.matD)
+    print(dc)
 
 
 if __name__ == "__main__":

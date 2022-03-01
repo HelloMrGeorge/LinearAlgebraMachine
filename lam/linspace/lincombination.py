@@ -1,8 +1,8 @@
 import copy
 import sympy as sp
 from sympy import MutableDenseMatrix, symbols
-from sympy.abc import w, x, y, z
 from typing import List
+from lam.core.solver import CoreSolver
 
 
 
@@ -44,11 +44,12 @@ def is_lincombination(group: List, vect, coef: List = []) -> bool:
     return flag
 
 
-if __name__ == "__main__":
-    A = [[1,2,3,-1], [3,2,1,-1], [2,3,1,1], [2,2,2,-1]]
-    b = sp.Matrix([5,5,2,0])
-    for i in range(len(A)):
-        A[i] = sp.Matrix(A[i])
-    coef = []
-    is_lincombination(A, b, coef)
-    print(coef)
+class LincombinationSolver(CoreSolver):
+    # 对象化的判断线性组合的求解器
+    def __init__(self, mat: MutableDenseMatrix, vec: MutableDenseMatrix, evaluate=True) -> None:
+        self.mat: MutableDenseMatrix = mat # 线性组合的向量组
+        self.vec: MutableDenseMatrix = vec # 被判断的向量
+        super().__init__(evaluate)
+
+    def toExecute(self) -> None:
+        return super().toExecute()

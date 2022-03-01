@@ -149,10 +149,16 @@ function loadEigenVectorData(data, ele) {
     for(let i = 0; i < data.result.length; i++) {
         createDefaultPanel(ele, `$ (\\lambda_{${i+1}} E - A)X = ${data.equ_mat[i]}X = 0 $`);
 
-        let content = `$  X_{${i+1}1} = ${data.result[i][0]}  $`;
+        let content = `解得：$  X_{${i+1}1} = ${data.result[i][0]}  $`;
         for(let j = 1; j < data.result[i].length; j++) {
             content = content + `, $ X_{${i+1}${j+1}} = ${data.result[i][j]} $`;
         }
         createDefaultPanel(ele, content);
     }
+}
+
+function loadDiagSymmetricData(data, ele) {
+    loadEigenVectorData(data.EVES, ele);
+
+    createDefaultPanel(ele, `$ D = T^{-1}AT, D = ${data.matD}, A = ${data.matT} $`)
 }
