@@ -4,14 +4,9 @@ import lam.linequ.gausslimination as gausslimination
 import lam.linequ.linequsolver as linequsolver
 
 def test1():
-    mat = [
-        [0,1,1],
-        [1,2,1],
-        [1,1,2],
-    ]
-    mat = sp.Matrix(mat)
+    mat = sp.Matrix([[1,2,3,-1], [3,2,1,-1], [2,3,1,1], [2,2,2,-1], [5,5,2,0]])
     solver = gausslimination.GESolver(mat)
-    print(solver.course)
+    print(solver.dict())
 
 def test2():
     mat = [

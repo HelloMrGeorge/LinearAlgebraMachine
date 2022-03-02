@@ -49,29 +49,35 @@ class LincombinationSolver(CoreSolver):
     def __init__(self, mat: MutableDenseMatrix, vec: MutableDenseMatrix, evaluate=True) -> None:
         self.mat: MutableDenseMatrix = mat # 线性组合的向量组
         self.vec: MutableDenseMatrix = vec # 被判断的向量
-        self.coef: List = [] # 存储线性组合的系数
+        self.solveset = None # 解方程时的解集
+        self.coef: List = [] # 线性组合的系数
         super().__init__(evaluate)
 
     def toExecute(self) -> None:
         vars = [] # 创建未知元，用以求解方程
         for i in range(self.mat.shape[1]):
             vars.append(symbols(f"x{i}"))
-        rs = sp.linsolve((self.mat, self.vec), vars)
+        self.solveset = sp.linsolve((self.mat, self.vec), vars)
 
-        if not rs.is_empty:
-            for x in rs.args[0]: #res是有限集，其参数可以被迭代器调用
+        if self.solveset.is_empty:
+            self.solveset = []
+        else:
+            for x in self.solveset.args[0]:
                 for i in range(self.mat.shape[1]):
                     x = x.subs(vars[i], 0)
                 self.coef.append(x)
+        
 
     def toDict(self) -> dict:
         js = {}
         js['mat'] = latex(self.mat)
         js['vec'] = latex(self.vec)
         js['coef'] = list(map(latex, self.coef))
+        js['solveset'] = list(map(latex, self.solveset.args[0]))
         ind = 0
         for x in js['coef']: # 处理负号的连接问题，为有负号的字符串加括号
             if x[0] == '-':
                 js['coef'][ind] = f'({x})'
             ind += 1
+
         return js
