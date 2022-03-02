@@ -159,6 +159,32 @@ function loadEigenVectorData(data, ele) {
 
 function loadDiagSymmetricData(data, ele) {
     loadEigenVectorData(data.EVES, ele);
-
     createDefaultPanel(ele, `$ D = T^{-1}AT, D = ${data.matD}, A = ${data.matT} $`)
+}
+
+function loadLincombinationData(data, ele) {
+    let content = 'a_{0}';
+    for(let i = 1; i < data.coef.length; i++) {
+        content += `,a_{${i}}`;
+    }
+    content = `(${content})`;
+    createDefaultPanel(ele, `解方程：$ ${content}X = b, ${content} = ${data.mat}, b = ${data.vec}$`);
+
+    content = '';
+    if(data.solveset.length <= 0) {
+        content = '无解';
+    } else {
+        content = '';
+        for(let i = 0; i < data.solveset.length; i++) {
+            content = content + `x_${i+1} = & ${data.solveset[i]} \\\\`;
+        }
+        content = `$\\left\\{\\begin{matrix} ${content.substring(0, content.length - 3)} \\end{matrix}\\right.$`;
+    }
+    createDefaultPanel(ele, content);
+
+    content = `b = ${data.coef[0]} a_{0}`;
+    for(let i = 1; i < data.coef.length; i++) {
+        content += `+ ${data.coef[i]} a_{${i}}`;
+    }
+    createDefaultPanel(ele, `代入未知元为0得：$ ${content} $`);
 }

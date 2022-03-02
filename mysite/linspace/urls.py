@@ -5,4 +5,7 @@ urlpatterns = [
     path('', views.MLIGSolverPage),
     path('MLIGSolverPage', views.MLIGSolverPage, name='MLIGSolverPage'),
     path('MLIGSolver', views.MLIGSolver, name='MLIGSolver'),
+
+    path('LincombinationSolverPage', views.LincombinationSolverPage, name='LincombinationSolverPage'),
+    path('LincombinationSolver', views.LincombinationSolver, name='LincombinationSolver'),
 ]
