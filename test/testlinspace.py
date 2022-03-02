@@ -3,7 +3,7 @@ import __init__
 import sympy as sp
 from lam.linspace.MLIG import MLIGSolver
 from lam.linspace.lincombination import LincombinationSolver
-from lam.linspace.linspace import LinDependenceSolver
+from lam.linspace.linspace import LinDependenceSolver, BasisTransSolver
 
 ma = sp.Matrix([[1,2,3,-1], [3,2,1,-1], [2,3,1,1], [2,2,2,-1], [5,5,2,0]])
 mb = sp.Matrix([[1,2,3], [3,2,1], [0,0,0]])
@@ -30,5 +30,13 @@ def test4():
     print(dc['result'])
     print(dc['GES'])
 
+def test5():
+    ma = sp.Matrix([[-1,1,1], [1,0,1], [0,1,1]])
+    mb = sp.Matrix([[1,0,0], [0,1,0], [0,0,1]])
+    mat = sp.Matrix([[1,0,1],[1,1,0],[-1,2,1]])
+    sl = BasisTransSolver(mat, ma, mb)
+    dc = sl.dict()
+    print(dc)
+
 if __name__ == "__main__":
-    test4()
+    test5()

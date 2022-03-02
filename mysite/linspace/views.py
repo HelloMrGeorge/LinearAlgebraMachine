@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-from lam.linspace import MLIG, lincombination
+from lam.linspace import MLIG, lincombination, linspace
 from mysite import matParser
 
 # Create your views here.
@@ -29,3 +29,26 @@ def LincombinationSolver(request):
 @ensure_csrf_cookie
 def LincombinationSolverPage(request):
     return render(request, 'linspace/LincombinationSolverPage.html')
+
+
+def LinDependenceSolver(request):
+    mat = matParser(json.loads(request.body)['matrix'])
+    jsdata = linspace.LinDependenceSolver(mat).dict()
+    return JsonResponse(jsdata)
+
+@ensure_csrf_cookie
+def LinDependenceSolverPage(request):
+    return render(request, 'linspace/LinDependenceSolverPage.html')
+
+
+def BasisTransSolver(request):
+    js = json.loads(request.body)
+    mat = matParser(js['matrix'])
+    ma = matParser(js['ma'])
+    mb = matParser(js['mb'])
+    jsdata = linspace.BasisTransSolver(mat, ma, mb).dict()
+    return JsonResponse(jsdata)
+
+@ensure_csrf_cookie
+def BasisTransSolverPage(request):
+    return render(request, 'linspace/BasisTransSolverPage.html')

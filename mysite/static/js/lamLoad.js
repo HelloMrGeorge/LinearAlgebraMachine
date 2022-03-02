@@ -188,3 +188,21 @@ function loadLincombinationData(data, ele) {
     }
     createDefaultPanel(ele, `代入未知元为0得：$ ${content} $`);
 }
+
+function loadLinDependenceData(data, ele) {
+    createDefaultPanel(ele, `$A = ${data.mat}$`);
+    GEPart(data.GES, ele)
+    
+    let content = '列不满秩，故线性无关';
+    if(data.result) {
+        content = '列满秩，故线性相关';
+    }
+    createDefaultPanel(ele, content);
+}
+
+function loadBasisTransData(data, ele) {
+    createDefaultPanel(ele, `变换前的基$B = ${data.ma}$，变换后的基$C = ${data.mb}$`);
+    createDefaultPanel(ele, `线性映射的矩阵$A = ${data.mat}$`);
+    createDefaultPanel(ele, `过渡矩阵$ T = CB^{-1} = ${data.matT} $`);
+    createDefaultPanel(ele, `变换后的矩阵$ D = T^{-1}AT = ${data.result} $`);
+}
