@@ -1,3 +1,15 @@
+function loadGEData(data, ele) {
+
+    createDefaultPanel(ele, `$ A = ${data.mat} $`);
+
+    let content = '$A$';
+    for(let i = 0; i < data.course.length; i++) {
+        content = content + `$\\rightarrow ${data.course[i]}$`;
+    }
+    createDefaultPanel(ele, content);
+
+}
+
 function loadLinequData(data, ele) {
 
     createPanel(ele).text(`$AX = b，$其中$A=${data.mat}$，$b=${data.vec}$，记增广矩阵$C = (A, b)$`);
@@ -6,7 +18,7 @@ function loadLinequData(data, ele) {
     for(let i = 0; i < data.elimination_course.length; i++) {
         course = course + `$\\rightarrow ${data.elimination_course[i]}$`;
     }
-    createPanel(ele).text(course);;
+    createPanel(ele).text(course);
     
     if(data.solveset.length <= 0) {
         createPanel(ele).text('无解');
@@ -107,4 +119,90 @@ function loadDeterminantData(data, ele) {
 
     createDefaultPanel(ele, `=$ ${data.sum} $`);
 
+}
+
+function loadGaussDeterminantData(data, ele) {
+
+    loadGEData(data.GES, ele);
+
+    content = `A = ${data.factor[0]}`;
+    for(let i = 1; i < data.factor.length; i++) {
+        content += `\\times ${data.factor[i]}`;
+    }
+    createDefaultPanel(ele, `$ ${content} = ${data.result} $`);
+}
+
+function loadEigenValueData(data, ele) {
+    createDefaultPanel(ele, `$ A = ${data.mat} $`);
+    createDefaultPanel(ele, `$ |\\lambda E - A| = ${data.lambda_mat} = ${data.charpoly} $`);
+
+    let content = `$  \\lambda_{1} = ${data.result[0][0]}  $`;
+    for(let i = 1; i < data.result.length; i++) {
+        content = content + `, $  \\lambda_{${i+1}} = ${data.result[i][0]} $`;
+    }
+    createDefaultPanel(ele, content);
+}
+
+function loadEigenVectorData(data, ele) {
+    loadEigenValueData(data.EVAS, ele);
+
+    for(let i = 0; i < data.result.length; i++) {
+        createDefaultPanel(ele, `$ (\\lambda_{${i+1}} E - A)X = ${data.equ_mat[i]}X = 0 $`);
+
+        let content = `解得：$  X_{${i+1}1} = ${data.result[i][0]}  $`;
+        for(let j = 1; j < data.result[i].length; j++) {
+            content = content + `, $ X_{${i+1}${j+1}} = ${data.result[i][j]} $`;
+        }
+        createDefaultPanel(ele, content);
+    }
+}
+
+function loadDiagSymmetricData(data, ele) {
+    loadEigenVectorData(data.EVES, ele);
+    createDefaultPanel(ele, `$ D = T^{-1}AT, D = ${data.matD}, A = ${data.matT} $`)
+}
+
+function loadLincombinationData(data, ele) {
+    let content = 'a_{0}';
+    for(let i = 1; i < data.coef.length; i++) {
+        content += `,a_{${i}}`;
+    }
+    content = `(${content})`;
+    createDefaultPanel(ele, `解方程：$ ${content}X = b, ${content} = ${data.mat}, b = ${data.vec}$`);
+
+    content = '';
+    if(data.solveset.length <= 0) {
+        content = '无解';
+    } else {
+        content = '';
+        for(let i = 0; i < data.solveset.length; i++) {
+            content = content + `x_${i+1} = & ${data.solveset[i]} \\\\`;
+        }
+        content = `$\\left\\{\\begin{matrix} ${content.substring(0, content.length - 3)} \\end{matrix}\\right.$`;
+    }
+    createDefaultPanel(ele, content);
+
+    content = `b = ${data.coef[0]} a_{0}`;
+    for(let i = 1; i < data.coef.length; i++) {
+        content += `+ ${data.coef[i]} a_{${i}}`;
+    }
+    createDefaultPanel(ele, `代入未知元为0得：$ ${content} $`);
+}
+
+function loadLinDependenceData(data, ele) {
+    createDefaultPanel(ele, `$A = ${data.mat}$`);
+    GEPart(data.GES, ele)
+    
+    let content = '列不满秩，故线性无关';
+    if(data.result) {
+        content = '列满秩，故线性相关';
+    }
+    createDefaultPanel(ele, content);
+}
+
+function loadBasisTransData(data, ele) {
+    createDefaultPanel(ele, `变换前的基$B = ${data.ma}$，变换后的基$C = ${data.mb}$`);
+    createDefaultPanel(ele, `线性映射的矩阵$A = ${data.mat}$`);
+    createDefaultPanel(ele, `过渡矩阵$ T = CB^{-1} = ${data.matT} $`);
+    createDefaultPanel(ele, `变换后的矩阵$ D = T^{-1}AT = ${data.result} $`);
 }

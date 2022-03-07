@@ -1,17 +1,12 @@
 import __init__
 import sympy as sp
-import lam.linequ.guasselimination as guasselimination
+import lam.linequ.gausslimination as gausslimination
 import lam.linequ.linequsolver as linequsolver
 
 def test1():
-    mat = [
-        [0,1,1],
-        [1,2,1],
-        [1,1,2],
-    ]
-    mat = sp.Matrix(mat)
-    solver = guasselimination.GESolver(mat)
-    print(solver.course)
+    mat = sp.Matrix([[1,2,3,-1], [3,2,1,-1], [2,3,1,1], [2,2,2,-1], [5,5,2,0]])
+    solver = gausslimination.GESolver(mat)
+    print(solver.dict())
 
 def test2():
     mat = [

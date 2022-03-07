@@ -3,13 +3,13 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 from mysite import matParser, exprParser
-from lam.linequ import linequsolver, guasselimination, lambdalinequ, inverse
+from lam.linequ import gausslimination, linequsolver, lambdalinequ, inverse
 
 # Create your views here.
 
 def GESolver(request):
     mat = matParser(json.loads(request.body)['matrix'])
-    jsdata = guasselimination.GESolver(mat).dict()
+    jsdata = gausslimination.GESolver(mat).dict()
     return JsonResponse(jsdata)
 
 @ensure_csrf_cookie

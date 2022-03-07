@@ -1,31 +1,25 @@
 from typing import List
 import sympy as sp
-from sympy import MutableDenseMatrix
+from sympy import MutableDenseMatrix, latex
+from lam.core.solver import CoreSolver
+        
 
-class GESolver:
+class GESolver(CoreSolver):
     '''
     执行高斯消元法的求解器
     '''
-
-    def __init__(self, mat: MutableDenseMatrix, evaluate = True) -> None:
+    def __init__(self, mat: MutableDenseMatrix, evaluate=True) -> None:
         self.mat: MutableDenseMatrix = mat
         self.course: List[MutableDenseMatrix] = []
+        self.result: MutableDenseMatrix = None
+        super().__init__(evaluate)
 
-        self.evaluate = False
-        if evaluate:
-            self.get_course()
-            self.evaluate = True
 
-    def get_course(self) -> None:
-        if not self.evaluate:
-            self.reduce_row()
-
-    def reduce_row(self) -> None:
-        #Gauss消元
+    def toExecute(self) -> None:
         mat: MutableDenseMatrix = self.mat.copy()
-        for pivot_rowInd in range(mat.shape[0]): #最后一行不用选主元
-            pivot = mat[pivot_rowInd, pivot_rowInd]
+        for pivot_rowInd in range(mat.shape[1]): #行消元次数与列数相同
             #选主元，如果待消元的列不为0，则选为主元，否则选最开始一行的元素为主元
+            pivot = mat[pivot_rowInd, pivot_rowInd]
             if pivot == 0:
                 for rowInd in range(pivot_rowInd+1, mat.shape[0]):
                     if mat[rowInd, pivot_rowInd] != 0:
@@ -39,22 +33,13 @@ class GESolver:
                     k = -sp.Mul(mat[rowInd, pivot_rowInd], sp.Pow(pivot, -1))
                     mat = mat.elementary_row_op(op='n->n+km', k=k, row1=rowInd, row2=pivot_rowInd)
                     self.course.append(mat.copy())
+        self.result = self.course[-1]
 
-    def dict(self):
-
-        # 返回该对象latex文本化的字典对象
-
-        if not self.evaluate:
-            self.get_course()
-            
+    def toDict(self) -> dict:
+        # 返回该对象latex文本化的字典对象      
         js = {}
+        js['course'] = list(map(latex, self.course))
+        js['mat'] = latex(self.mat)
+        js['result'] = latex(self.result)
 
-        js['course'] = []
-        for m in self.course:
-            js['course'].append(sp.latex(m))
-
-        js['mat'] = sp.latex(self.mat)
-
-        self.js = js
-        return self.js
-        
+        return js

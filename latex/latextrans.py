@@ -53,7 +53,7 @@ def standard_transformation(matrix:list):
     for i in range(len(matrix)):
         result.append([])
         for j in range(len(matrix[0])):
-            result[i].append(parse_latex(matrix[i][j]))
+            result[i].append(sp.simplify(parse_latex(matrix[i][j])))
     result=sp.Matrix(result)
     return result
 def strtrans(formula:str):
