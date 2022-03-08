@@ -159,7 +159,7 @@ function loadEigenVectorData(data, ele) {
 
 function loadDiagSymmetricData(data, ele) {
     loadEigenVectorData(data.EVES, ele);
-    createDefaultPanel(ele, `$ D = T^{-1}AT, D = ${data.matD}, A = ${data.matT} $`)
+    createDefaultPanel(ele, `$ D = T^{-1}AT, D = ${data.matD}, T = ${data.matT} $`)
 }
 
 function loadLincombinationData(data, ele) {
@@ -205,4 +205,17 @@ function loadBasisTransData(data, ele) {
     createDefaultPanel(ele, `线性映射的矩阵$A = ${data.mat}$`);
     createDefaultPanel(ele, `过渡矩阵$ T = CB^{-1} = ${data.matT} $`);
     createDefaultPanel(ele, `变换后的矩阵$ D = T^{-1}AT = ${data.result} $`);
+}
+
+function loadHurwitzSolverData(data, ele) {
+    createDefaultPanel(ele, `$ A = ${data.mat} $`);
+    HurwitzPart(data, ele);
+    let content = '$A$既不正定也不负定。';
+    if(data.result == 'postive') {
+        content = '所以$A$正定。';
+    } else if(data.result == 'negative') {
+        content = '所以$A$负定。';
+    }
+    createDefaultPanel(ele, content);
+
 }

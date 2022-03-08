@@ -97,7 +97,7 @@ class HurwitzSolver(CoreSolver):
     def toDict(self) -> dict:
         js = {}
         js['mat'] = latex(self.mat)
-        js['minorMat'] = list(map(latex, self.minorMat))
+        js['minorMat'] = list(map(lambda x: latex(x).replace('left[', 'left|').replace('right]', 'right|'), self.minorMat))
         js['minor'] = list(map(latex, self.minor))
         js['result'] = self.result
         return js

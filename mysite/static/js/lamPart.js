@@ -5,3 +5,9 @@ function GEPart(data, ele) {
     content += data.course.map(x => `$ \\rightarrow ${x} $`).join('');
     createDefaultPanel(ele, content);
 }
+
+function HurwitzPart(data, ele) {
+    for(let i = 0; i < data.minor.length; i++) {
+        createDefaultPanel(ele, `$ ${data.minorMat[i]} = ${data.minor[i]} $`);
+    }
+}
