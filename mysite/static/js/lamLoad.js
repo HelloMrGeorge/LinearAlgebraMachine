@@ -219,3 +219,9 @@ function loadHurwitzSolverData(data, ele) {
     createDefaultPanel(ele, content);
 
 }
+
+function loadPolySolverData(data, ele) {
+    createDefaultPanel(ele, `多项式:$ p = ${data.matPoly} $，矩阵$ A = ${data.mat} $`);
+    createDefaultPanel(ele, `代入A到p得: $ p = ${data.subPoly}$`)
+    createDefaultPanel(ele, `结果是: $p = ${data.result}$`)
+}

@@ -1,4 +1,3 @@
-from cgi import test
 import __init__
 import sympy as sp
 from lam.linspace.MLIG import MLIGSolver
