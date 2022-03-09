@@ -1,7 +1,8 @@
 import logging
 from typing import List
 import sympy as sp
-from sympy.matrices.dense import MutableDenseMatrix
+from sympy import Expr, MutableDenseMatrix, latex
+from lam.core.solver import CoreSolver
 from lam.quad.quadbase import *
 
 logging.basicConfig(level=logging.DEBUG)
@@ -58,3 +59,45 @@ class QuadSolver:
         self.js = js
         return self.js
 
+class HurwitzSolver(CoreSolver):
+    # 判断正定或负定矩阵
+    def __init__(self, mat: MutableDenseMatrix, evaluate=True) -> None:
+        self.mat: MutableDenseMatrix = mat
+        self.minorMat: List[MutableDenseMatrix] = []
+        self.minor: List[Expr] = []
+        self.result: str = 'none'
+        super().__init__(evaluate)
+
+    def toExecute(self) -> None:
+        mat = self.mat.copy()
+        for i in range(self.mat.shape[0]):
+            self.minorMat.insert(0, mat.copy())
+            mat = mat.minor_submatrix(-1, -1)
+        self.minor = list(map(lambda x: x.det(), self.minorMat))
+        
+        positiveFlag = True  
+        for x in self.minor:
+            if x < 0:
+                positiveFlag = False
+                break
+        
+        count = 1
+        negativeFlag = True
+        for x in self.minor:
+            if x*(-1)**count < 0:
+                positiveFlag = False
+                break
+            count += 1
+
+        if positiveFlag:
+            self.result = 'positive'
+        elif negativeFlag:
+            self.result = 'negative'
+
+    def toDict(self) -> dict:
+        js = {}
+        js['mat'] = latex(self.mat)
+        js['minorMat'] = list(map(lambda x: latex(x).replace('left[', 'left|').replace('right]', 'right|'), self.minorMat))
+        js['minor'] = list(map(latex, self.minor))
+        js['result'] = self.result
+        return js
