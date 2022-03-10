@@ -17,28 +17,23 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"> 计算矩阵多项式 </h3>
+            <h3 class="panel-title"> 正交化多项式 </h3>
           </div>
 
           <div class="panel-body">
             <form class="form-horizontal">
 
-              <label for="poly" class="col-md-2 control-label">多项式</label>
-              <div class="col-md-4">
-                <input type="text" class="form-control" id="poly" value="x^{3} + x + 1">
+              <label for="group" class="col-md-3 control-label">多项式组</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="group" value="[[1, x, x^2]]">
               </div>
 
-              <label for="var" class="col-md-2 control-label">确定变量</label>
-              <div class="col-md-4">
+              <label for="var" class="col-md-3 control-label">确定变量</label>
+              <div class="col-md-6">
                 <input type="text" class="form-control" id="var" value="x">
               </div>
 
-              <label for="matrix" class="col-md-2 control-label">矩阵值</label>
-              <div class="col-md-8">
-                <input type="text" class="form-control" id="matrix" value="[[1,0,1],[1,1,0],[-1,0,1]]">
-              </div>
-
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <button type="button" class="btn btn-default" id="submit">提交</button>
               </div>
 
@@ -61,7 +56,7 @@
       <div class="col-md-3" role="complementary">
         <ul class="list-group">
           <li class="list-group-item"><h3>快捷导航</h3></li>
-          <li class="list-group-item"><a href="{% url 'SchmidtPolySolverPage' %}">正交化多项式</a></li>
+          <li class="list-group-item"><a href="{% url 'DeterminantSolverPage' %}">展开行列式</a></li>
           <li class="list-group-item"><a href="#">线性方程</a></li>
           <li class="list-group-item"><a href="#">特征值与特征向量</a></li>
           <li class="list-group-item"><a href="#">二次型</a></li>
@@ -82,14 +77,14 @@
         method: 'POST',
         mode: 'same-origin',
         headers: {'X-csrftoken': docCookies.getItem('csrftoken')},
-        body: JSON.stringify({matrix: $('#matrix').val(), var: $('#var').val(), poly: $('#poly').val()}),
+        body: JSON.stringify({var: $('#var').val(), group: $('#group').val()}),
       };
 
-      fetch(new Request("{% url 'PolySolver' %}", initHead))
+      fetch(new Request("{% url 'SchmidtPolySolver' %}", initHead))
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        loadPolyData(data, document.getElementById('course-area'));
+        loadSchmidtPolyData(data, document.getElementById('course-area'));
         MathJax.typeset();
       });
     })

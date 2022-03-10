@@ -16,3 +16,14 @@ def PolySolver(request):
     expr = exprParser(js['poly'])
     jsdata = poly.PolySolver(mat, var, expr).dict()
     return JsonResponse(jsdata)
+
+
+def SchmidtPolySolverPage(request):
+    return render(request, 'poly/SchmidtPolySolverPage.html')
+
+def SchmidtPolySolver(request):
+    js = json.loads(request.body)
+    var = exprParser(js['var'])
+    group = list(matParser(js['group']))
+    jsdata = poly.SchmidtPolySolver(group, var).dict()
+    return JsonResponse(jsdata)
