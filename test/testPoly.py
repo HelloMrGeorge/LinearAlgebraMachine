@@ -1,8 +1,8 @@
-from numpy import identity
+from cgi import test
 import __init__
 import sympy as sp
 from sympy.abc import n, x
-from lam.poly.poly import PolySolver
+from lam.poly.poly import PolySolver, SchmidtPolySolver
 from sympy.parsing.latex import parse_latex
 import logging
 
@@ -35,7 +35,20 @@ def test4():
     p = sp.Poly(b, a)
     print(p)
 
+def test5():
+    group = [1, x, x**2]
+    var = x
+    sl = SchmidtPolySolver(group, var)
+    dc = sl.dict()
+    logging.debug(dc['coef'])
+    logging.debug(sl.coef[0,:])
+    logging.debug(list(sl.coef[0,:]))
+
+    
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
 
-    test3()
+    # a = sp.integrate(x**2*(x-sp.Rational(1,2)), (x, 0, 1))
+    # print(a)
+    test5()

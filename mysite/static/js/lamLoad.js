@@ -220,8 +220,42 @@ function loadHurwitzSolverData(data, ele) {
 
 }
 
-function loadPolySolverData(data, ele) {
-    createDefaultPanel(ele, `多项式:$ p = ${data.matPoly} $，矩阵$ A = ${data.mat} $`);
-    createDefaultPanel(ele, `代入A到p得: $ p = ${data.subPoly}$`)
-    createDefaultPanel(ele, `结果是: $p = ${data.result}$`)
+function loadPolyData(data, ele) {
+    createDefaultPanel(ele, `多项式$ p = ${data.matPoly} $，矩阵$ A = ${data.mat} $`);
+    createDefaultPanel(ele, `代入A到p得: $ p = ${data.subPoly}$`);
+    createDefaultPanel(ele, `结果是: $p = ${data.result}$`);
+}
+
+function loadSchmidtPolyData(data, ele) {
+
+    let content = '';
+    for(let i = 0; i < data.group.length; i++) {
+        content += `\\alpha_{${i+1}} = ${data.group[i]},`;
+    }
+    createDefaultPanel(ele, `初始向量：$${content.substring(0, content.length - 1)}$`);
+
+    for(let i = 0; i < data.result.length; i++) {
+        let content = `\\varepsilon_{${i+1}} = \\alpha_{${i+1}}`;
+        for(let j = 0; j < i; j++) {
+          content += `- \\frac{(\\alpha_{${i+1}}, \\varepsilon_{${j+1}})}{(\\varepsilon_{${i+1}}, \\varepsilon_{${j+1}})} \\varepsilon_{${j+1}}`;
+        }
+        content += `= \\alpha_{${i+1}}`;
+        for(let j = 0; j < i; j++) {
+          if (data.coef[i][j].charAt(0) == '-') {
+            // 防止出现连续的两个负号
+            content = content + `+ ${data.coef[i][j].substring(1)}\\varepsilon_{${j+1}}`;
+          } else {
+            content = content + `- ${data.coef[i][j]}\\varepsilon_{${j+1}}`;
+          }
+        }
+        content += `= ${data.result[i]}`;
+        createDefaultPanel(ele, `$$${content}$$`);
+    }
+
+    content = '';
+    for(let i = 0; i < data.unitized.length; i++) {
+      content = content + `\\varepsilon_{${i+1}}' = ${data.unitized[i]},`;
+    }
+    content = `单位化后得：$${content.substring(0, content.length - 1)}$`;
+    createDefaultPanel(ele, content);
 }

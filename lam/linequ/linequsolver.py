@@ -34,8 +34,6 @@ class LinequSolver:
         先进行矩阵阶梯化运算
         '''
         self.GES = GESolver(self.Ab)
-        self.GES.get_course()
-
         self.elimination_course = self.GES.course
         self.Ab = self.elimination_course[-1]
 

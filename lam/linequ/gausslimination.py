@@ -17,7 +17,7 @@ class GESolver(CoreSolver):
 
     def toExecute(self) -> None:
         mat: MutableDenseMatrix = self.mat.copy()
-        for pivot_rowInd in range(mat.shape[1]): #行消元次数与列数相同
+        for pivot_rowInd in range(min(mat.shape)): #行消元次数取决行数小还是列数小
             #选主元，如果待消元的列不为0，则选为主元，否则选最开始一行的元素为主元
             pivot = mat[pivot_rowInd, pivot_rowInd]
             if pivot == 0:
