@@ -2,7 +2,7 @@ from cgi import test
 import __init__
 import sympy as sp
 from sympy.abc import n, x
-from lam.poly.poly import PolySolver, SchmidtPolySolver
+from linalgpy.poly.poly import PolySolver, SchmidtPolySolver
 from sympy.parsing.latex import parse_latex
 import logging
 

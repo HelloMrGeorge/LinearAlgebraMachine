@@ -1,6 +1,6 @@
 import __init__
 import sympy as sp
-from lam.quad.quadratic import QuadSolver, HurwitzSolver
+from linalgpy.quad.quadratic import QuadSolver, HurwitzSolver
 
 import logging
 

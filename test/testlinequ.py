@@ -1,7 +1,7 @@
 import __init__
 import sympy as sp
-import lam.linequ.gausslimination as gausslimination
-import lam.linequ.linequsolver as linequsolver
+import linalgpy.linequ.gausslimination as gausslimination
+import linalgpy.linequ.linequsolver as linequsolver
 
 def test1():
     mat = sp.Matrix([[1,1,1,1], [2,2,2,2], [3,3,3,3]])

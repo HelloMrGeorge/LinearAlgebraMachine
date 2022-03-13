@@ -1,8 +1,8 @@
 import __init__
 import sympy as sp
-from lam.linspace.MLIG import MLIGSolver
-from lam.linspace.lincombination import LincombinationSolver
-from lam.linspace.linspace import LinDependenceSolver, BasisTransSolver
+from linalgpy.linspace.MLIG import MLIGSolver
+from linalgpy.linspace.lincombination import LincombinationSolver
+from linalgpy.linspace.linspace import LinDependenceSolver, BasisTransSolver
 
 ma = sp.Matrix([[1,2,3,-1], [3,2,1,-1], [2,3,1,1], [2,2,2,-1], [5,5,2,0]])
 mb = sp.Matrix([[1,2,3], [3,2,1], [0,0,0]])

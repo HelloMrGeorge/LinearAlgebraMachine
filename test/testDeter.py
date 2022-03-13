@@ -1,6 +1,6 @@
 import __init__
 import sympy as sp
-from lam.determinant.determinant import DeterminantSolver
+from linalgpy.determinant.determinant import DeterminantSolver
 from sympy.abc import a, b, c
 
 def test1():

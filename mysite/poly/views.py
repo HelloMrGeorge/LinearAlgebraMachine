@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from mysite import matParser, exprParser
-from lam.poly import poly
+from linalgpy.latex.parser import matParser, exprParser
+from linalgpy.poly import poly
 import json
 
 # Create your views here.

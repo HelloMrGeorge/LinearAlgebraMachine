@@ -1,7 +1,7 @@
 from cgi import test
 import __init__
-from lam.eigen.eigen import *
-from lam.eigen.diagnoalize import *
+from linalgpy.eigen.eigen import *
+from linalgpy.eigen.diagnoalize import *
 import sympy as sp
 import logging
 

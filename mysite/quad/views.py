@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from lam.quad import quadratic
-from mysite import matParser
+from linalgpy.quad import quadratic
+from linalgpy.latex.parser import matParser
 import json
 
 
