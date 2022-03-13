@@ -2,8 +2,8 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-from mysite import matParser, exprParser
-from lam.linequ import gausslimination, linequsolver, lambdalinequ, inverse
+from linalgpy.latex.parser import matParser, exprParser
+from linalgpy.linequ import gausslimination, linequsolver, lambdalinequ, inverse
 
 # Create your views here.
 

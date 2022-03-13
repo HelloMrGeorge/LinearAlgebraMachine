@@ -2,8 +2,8 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-from lam.linspace import MLIG, lincombination, linspace
-from mysite import matParser
+from linalgpy.linspace import MLIG, lincombination, linspace
+from linalgpy.latex.parser import matParser
 
 # Create your views here.
 def MLIGSolver(request):

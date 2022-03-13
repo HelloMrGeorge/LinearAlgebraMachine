@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-from lam.eigen import eigen, diagnoalize
-from mysite import matParser
+from linalgpy.eigen import eigen, diagnoalize
 from django.http import JsonResponse
+from linalgpy.latex.parser import matParser
 import json
 
 def EigenValueSolver(request):
