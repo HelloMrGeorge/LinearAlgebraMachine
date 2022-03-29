@@ -1,0 +1,40 @@
+introduction
+===============
+
+.. _installation:
+
+Installation -- 安装
+------------------------
+
+linalgpy是一个用于学习线性代数的python库，在使用linalgpy之前，请先使用pip安装
+
+.. code-block:: console
+
+   (.venv) $ pip install linalgpy
+
+Usage -- 使用
+----------------
+
+linalgpy是线性代数解题平台的后台程序，它仅支持在python编译器下运行，由于linalgpy是基于sympy库开发的简单程序包，在使用linalgpy之前，请读者先熟悉sympy库的使用。如果要使用图形化界面，请访问线性代数平台。
+
+linalgpy由多个分立的求解器(Solver)构成，每个求解器负责求解特定的问题，他们继承自CoreSolver类。
+
+.. py:class:: linalgpy.core.core.CoreSolver
+
+   .. py:method:: execute()
+
+   执行函数，该类的子类可以调用此函数以进行一次求解
+
+   .. py:method:: dict()
+
+   返回计算结果及过程，字典中的项目都是latex编码的字符串，类的子类可以调用此函数以返回一个字典
+
+   .. py:method:: toExecute()
+
+   toExecute()是execute的内层函数，不建议直接调用，一般通过execute()调用toExecute()
+
+   .. py:method:: toDict()
+
+   todict()是dict的内层函数，不建议直接调用，一般通过dict()调用todict()
+
+继承自CoreSolver类的任何求解器都可以调用execute()执行一次求解，并调用dict()函数以返回latex文本化的求解过程及结果，也可以通过访问求解器中的字段访问sympy对象化的求解过程及结果。关于具体求解器的使用请查看 :ref:`api` 

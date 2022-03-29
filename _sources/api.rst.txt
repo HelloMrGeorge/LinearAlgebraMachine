@@ -1,0 +1,87 @@
+.. _api:
+
+api
+=====
+
+core -- 核心模块
+------------------------
+
+.. autoclass:: linalgpy.core.solver.CoreSolver
+   :members:
+
+determinant -- 行列式模块
+---------------------------
+
+.. autoclass:: linalgpy.determinant.determinant.DeterminantSolver
+   :members:
+
+.. autoclass:: linalgpy.determinant.determinant.GausseDeterminantSolver
+   :members:
+
+.. _linequ:
+
+linequ -- 线性方程模块
+---------------------------
+
+.. autoclass:: linalgpy.linequ.gausslimination.GESolver
+   :members:
+
+.. autoclass:: linalgpy.linequ.linequsolver.LinequSolver
+   :members:
+
+.. autoclass:: linalgpy.linequ.lambdalinequ.LambdaLinSolver
+   :members:
+
+.. autoclass:: linalgpy.linequ.inverse.InverseSolver
+   :members:
+
+linspace -- 向量空间模块
+---------------------------
+
+.. autoclass:: linalgpy.linspace.linspace.BasisTransSolver
+   :members:
+
+.. autoclass:: linalgpy.linspace.linspace.LinDependenceSolver
+   :members:
+
+.. autoclass:: linalgpy.linspace.lincombination.LincombinationSolver
+   :members:
+
+.. autoclass:: linalgpy.linspace.MLIG.MLIGSolver
+   :members:
+
+.. _eigen:
+
+eigen -- 特征值模块
+---------------------------
+
+.. autoclass:: linalgpy.eigen.eigen.EigenValueSolver
+   :members:
+
+.. autoclass:: linalgpy.eigen.eigen.EigenVectorSolver
+   :members:
+
+.. autoclass:: linalgpy.eigen.diagnoalize.DiagSymmetricSolver
+   :members:
+   
+metric -- 度量空间
+---------------------------
+
+.. autoclass:: linalgpy.metric.schmidt.SchmidtVectorSolver
+   :members:
+
+quad -- 二次型
+---------------------------
+
+.. autoclass:: linalgpy.quad.quadratic.QuadSolver
+   :members:
+
+.. autoclass:: linalgpy.quad.quadratic.HurwitzSolver
+   :members:
+
+poly -- 多项式
+---------------------------
+
+.. autoclass:: linalgpy.poly.poly.PolySolver
+   :members:
+
