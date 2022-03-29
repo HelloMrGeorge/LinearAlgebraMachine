@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>introduction &#8212; linalgpy 0.0.3 文档</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="api" href="api.html" />
+    <link rel="prev" title="Welcome to Linalgpy’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="introduction">
+<h1>introduction<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h1>
+<section id="installation">
+<span id="id1"></span><h2>Installation – 安装<a class="headerlink" href="#installation" title="永久链接至标题">¶</a></h2>
+<p>linalgpy是一个用于学习线性代数的python库，在使用linalgpy之前，请先使用pip安装</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip install linalgpy
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage – 使用<a class="headerlink" href="#usage" title="永久链接至标题">¶</a></h2>
+<p>linalgpy是线性代数解题平台的后台程序，它仅支持在python编译器下运行，由于linalgpy是基于sympy库开发的简单程序包，在使用linalgpy之前，请读者先熟悉sympy库的使用。如果要使用图形化界面，请访问线性代数平台。</p>
+<p>linalgpy由多个分立的求解器(Solver)构成，每个求解器负责求解特定的问题，他们继承自CoreSolver类。</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.core.core.CoreSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.core.core.</span></span><span class="sig-name descname"><span class="pre">CoreSolver</span></span><a class="headerlink" href="#linalgpy.core.core.CoreSolver" title="永久链接至目标">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.core.CoreSolver.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.core.core.CoreSolver.execute" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>执行函数，该类的子类可以调用此函数以进行一次求解</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.core.CoreSolver.dict">
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.core.core.CoreSolver.dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>返回计算结果及过程，字典中的项目都是latex编码的字符串，类的子类可以调用此函数以返回一个字典</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.core.CoreSolver.toExecute">
+<span class="sig-name descname"><span class="pre">toExecute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.core.core.CoreSolver.toExecute" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>toExecute()是execute的内层函数，不建议直接调用，一般通过execute()调用toExecute()</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.core.CoreSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.core.core.CoreSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>todict()是dict的内层函数，不建议直接调用，一般通过dict()调用todict()</p>
+</dd></dl>
+
+<p>继承自CoreSolver类的任何求解器都可以调用execute()执行一次求解，并调用dict()函数以返回latex文本化的求解过程及结果，也可以通过访问求解器中的字段访问sympy对象化的求解过程及结果。关于具体求解器的使用请查看 <a class="reference internal" href="api.html#api"><span class="std std-ref">api</span></a></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">linalgpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation – 安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage – 使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">api</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="上一章">Welcome to Linalgpy’s documentation!</a></li>
+      <li>Next: <a href="api.html" title="下一章">api</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, HelloMrGeorge.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/introduction.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

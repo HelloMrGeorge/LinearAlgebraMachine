@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>api &#8212; linalgpy 0.0.3 文档</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="introduction" href="introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api">
+<span id="id1"></span><h1>api<a class="headerlink" href="#api" title="永久链接至标题">¶</a></h1>
+<section id="core">
+<h2>core – 核心模块<a class="headerlink" href="#core" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.core.solver.CoreSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.core.solver.</span></span><span class="sig-name descname"><span class="pre">CoreSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.core.solver.CoreSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>核心求解器</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.solver.CoreSolver.dict">
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.core.solver.CoreSolver.dict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回计算结果及过程，字典中的项目都是latex编码的字符串，类的子类可以调用此函数以返回一个字典</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.solver.CoreSolver.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#linalgpy.core.solver.CoreSolver.execute" title="永久链接至目标">¶</a></dt>
+<dd><p>执行函数，该类的子类可以调用此函数以进行一次求解</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.core.solver.CoreSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">linalgpy.core.solver.CoreSolver.dict</span></span></span><a class="headerlink" href="#linalgpy.core.solver.CoreSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>todict()是dict的内层函数，不建议直接调用，一般通过dict()调用todict()</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="determinant">
+<h2>determinant – 行列式模块<a class="headerlink" href="#determinant" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.determinant.determinant.DeterminantSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.determinant.determinant.</span></span><span class="sig-name descname"><span class="pre">DeterminantSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.determinant.determinant.DeterminantSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>行展开求解行列式</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 待求解的矩阵</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.determinant.determinant.DeterminantSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.determinant.determinant.DeterminantSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>result 行列式的值</p></li>
+<li><p>sum</p></li>
+<li><p>coef</p></li>
+<li><p>operater</p></li>
+<li><p>cofactor</p></li>
+<li><p>result_operater</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.determinant.determinant.GausseDeterminantSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.determinant.determinant.</span></span><span class="sig-name descname"><span class="pre">GausseDeterminantSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.determinant.determinant.GausseDeterminantSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>高斯消元法求解行列式</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 待求解的矩阵</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.determinant.determinant.GausseDeterminantSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.determinant.determinant.GausseDeterminantSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>GES <a class="reference internal" href="#linequ"><span class="std std-ref">GESolver</span></a> 返回的字典</p></li>
+<li><p>result 行列式的值</p></li>
+<li><p>factor</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="linequ">
+<span id="id2"></span><h2>linequ – 线性方程模块<a class="headerlink" href="#linequ" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linequ.gausslimination.GESolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linequ.gausslimination.</span></span><span class="sig-name descname"><span class="pre">GESolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linequ.gausslimination.GESolver" title="永久链接至目标">¶</a></dt>
+<dd><p>对矩阵进行高斯行消元</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 待求解的矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linequ.gausslimination.GESolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linequ.gausslimination.GESolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>course 消元过程中的矩阵</p></li>
+<li><p>mat 输入的矩阵</p></li>
+<li><p>result 输出结果</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linequ.linequsolver.LinequSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linequ.linequsolver.</span></span><span class="sig-name descname"><span class="pre">LinequSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linequ.linequsolver.LinequSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>消元法求解，线性方程组Ax = b的求解器</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 方程系数矩阵A</p></li>
+<li><p><strong>vec</strong> (<em>MutableDenseMatrix</em>) – 方程常数项b</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linequ.linequsolver.LinequSolver.dict">
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linequ.linequsolver.LinequSolver.dict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>vec 输入的常数项</p></li>
+<li><p>solveset 方程的解</p></li>
+<li><p>elimination_course 消元过程</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linequ.linequsolver.LinequSolver.reduce_row">
+<span class="sig-name descname"><span class="pre">reduce_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#linalgpy.linequ.linequsolver.LinequSolver.reduce_row" title="永久链接至目标">¶</a></dt>
+<dd><p>先进行矩阵阶梯化运算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linequ.linequsolver.LinequSolver.solve_echelon">
+<span class="sig-name descname"><span class="pre">solve_echelon</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#linalgpy.linequ.linequsolver.LinequSolver.solve_echelon" title="永久链接至目标">¶</a></dt>
+<dd><p>解出reduce_row(self)得到的阶梯型矩阵</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linequ.lambdalinequ.LambdaLinSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linequ.lambdalinequ.</span></span><span class="sig-name descname"><span class="pre">LambdaLinSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lam</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.core.symbol.Symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linequ.lambdalinequ.LambdaLinSolver" title="永久链接至目标">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linequ.lambdalinequ.LambdaLinSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linequ.lambdalinequ.LambdaLinSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>LQS_list <a class="reference internal" href="#linequ"><span class="std std-ref">linequSolver</span></a> 返回的字典</p></li>
+<li><p>LQS_nozero <a class="reference internal" href="#linequ"><span class="std std-ref">linequSolver</span></a> 返回的字典</p></li>
+<li><p>lam 讨论的参数的字符</p></li>
+<li><p>root 特征多项式的根</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linequ.inverse.InverseSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linequ.inverse.</span></span><span class="sig-name descname"><span class="pre">InverseSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linequ.inverse.InverseSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>利用消元法求矩阵的逆</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 待求解的矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linequ.inverse.InverseSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linequ.inverse.InverseSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>course 求逆过程中的矩阵</p></li>
+<li><p>mat 输入的矩阵</p></li>
+<li><p>inv 输出结果</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="linspace">
+<h2>linspace – 向量空间模块<a class="headerlink" href="#linspace" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linspace.linspace.BasisTransSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linspace.linspace.</span></span><span class="sig-name descname"><span class="pre">BasisTransSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linspace.linspace.BasisTransSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>求基变换后线性映射的矩阵</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 变换前线性映射的矩阵</p></li>
+<li><p><strong>ma</strong> (<em>MutableDenseMatrix</em>) – 变换前的基</p></li>
+<li><p><strong>mb</strong> (<em>MutableDenseMatrix</em>) – 变换后的基</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linspace.linspace.BasisTransSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linspace.linspace.BasisTransSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>ma 输入的ma</p></li>
+<li><p>mat 输入的mat</p></li>
+<li><p>mb 输入的mb</p></li>
+<li><p>matT 过渡矩阵</p></li>
+<li><p>result 输出结果</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linspace.linspace.LinDependenceSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linspace.linspace.</span></span><span class="sig-name descname"><span class="pre">LinDependenceSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linspace.linspace.LinDependenceSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>判断向量组是否线性相关</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 待求解的矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linspace.linspace.LinDependenceSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linspace.linspace.LinDependenceSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的向量组</p></li>
+<li><p>GES 求解不定方程的过程 <a class="reference internal" href="#linequ"><span class="std std-ref">GESolver</span></a></p></li>
+<li><p>result 输出结果</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linspace.lincombination.LincombinationSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linspace.lincombination.</span></span><span class="sig-name descname"><span class="pre">LincombinationSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linspace.lincombination.LincombinationSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>对象化的判断线性组合的求解器</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 线性组合的向量组</p></li>
+<li><p><strong>vec</strong> (<em>MutableDenseMatrix</em>) – 被判断的向量</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linspace.lincombination.LincombinationSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linspace.lincombination.LincombinationSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 线性组合的向量组</p></li>
+<li><p>vec 被判断的向量</p></li>
+<li><p>coef 线性组合的系数</p></li>
+<li><p>solveset 线性组合方程的解</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.linspace.MLIG.MLIGSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.linspace.MLIG.</span></span><span class="sig-name descname"><span class="pre">MLIGSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.linspace.MLIG.MLIGSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>筛选法求解极大无关组向量组</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>group</strong> (<em>list</em>) – 待求解向量组，列表的每个元素表示一个向量</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.linspace.MLIG.MLIGSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.linspace.MLIG.MLIGSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>group 输入的向量组</p></li>
+<li><p>position 极大无关组向量在原向量组的索引</p></li>
+<li><p>coef</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="eigen">
+<span id="id3"></span><h2>eigen – 特征值模块<a class="headerlink" href="#eigen" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.eigen.eigen.EigenValueSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.eigen.eigen.</span></span><span class="sig-name descname"><span class="pre">EigenValueSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.eigen.eigen.EigenValueSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>求解矩阵的特征值</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.eigen.eigen.EigenValueSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.eigen.eigen.EigenValueSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>charpoly 特征多项式</p></li>
+<li><p>result 输出结果</p></li>
+<li><p>lambda_mat</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.eigen.eigen.EigenVectorSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.eigen.eigen.</span></span><span class="sig-name descname"><span class="pre">EigenVectorSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.eigen.eigen.EigenVectorSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>求解矩阵的特征向量</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.eigen.eigen.EigenVectorSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.eigen.eigen.EigenVectorSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>EVAS :ref: <cite>EigenValueSolver &lt;eigen&gt;</cite> 返回的字典，表示求解特征值的过程</p></li>
+<li><p>result 输出结果</p></li>
+<li><p>equ_mat</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.eigen.diagnoalize.DiagSymmetricSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.eigen.diagnoalize.</span></span><span class="sig-name descname"><span class="pre">DiagSymmetricSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.eigen.diagnoalize.DiagSymmetricSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>将对称矩阵对角化</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.eigen.diagnoalize.DiagSymmetricSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.eigen.diagnoalize.DiagSymmetricSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>matT 过渡矩阵</p></li>
+<li><p>matD 对角化的矩阵</p></li>
+<li><p>EVES :ref: <cite>EigenVectorSolver &lt;eigen&gt;</cite> 返回的字典，表示求解特征向量的过程</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="metric">
+<h2>metric – 度量空间<a class="headerlink" href="#metric" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.metric.schmidt.SchmidtVectorSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.metric.schmidt.</span></span><span class="sig-name descname"><span class="pre">SchmidtVectorSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.metric.schmidt.SchmidtVectorSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>对欧氏空间的向量进行Schmidt正交化。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的向量组，矩阵的每一行代表一个向量</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em>) – 是否进行单位化</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.metric.schmidt.SchmidtVectorSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.metric.schmidt.SchmidtVectorSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>vecs :ref: <cite>EigenValueSolver &lt;eigen&gt;</cite> 正交化的向量组</p></li>
+<li><p>norm_vecs 单位化的向量组</p></li>
+<li><p>coef 计算过程中原向量组前的系数</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="quad">
+<h2>quad – 二次型<a class="headerlink" href="#quad" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.quad.quadratic.QuadSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.quad.quadratic.</span></span><span class="sig-name descname"><span class="pre">QuadSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.quad.quadratic.QuadSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>化二次型为标准形</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的对称矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.quad.quadratic.QuadSolver.dict">
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.quad.quadratic.QuadSolver.dict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>mark 标记每次线性变数替换的类型</p></li>
+<li><p>trans 记录每次线性变数替换的矩阵</p></li>
+<li><p>result 对应mat的标准形</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.quad.quadratic.HurwitzSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.quad.quadratic.</span></span><span class="sig-name descname"><span class="pre">HurwitzSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.quad.quadratic.HurwitzSolver" title="永久链接至目标">¶</a></dt>
+<dd><p>Hurwitz定理判断正定或负定矩阵</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的对称矩阵</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.quad.quadratic.HurwitzSolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.quad.quadratic.HurwitzSolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>mark 标记每次线性变数替换的类型</p></li>
+<li><p>trans 记录每次线性变数替换的矩阵</p></li>
+<li><p>result 对应mat的标准形</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="poly">
+<h2>poly – 多项式<a class="headerlink" href="#poly" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="linalgpy.poly.poly.PolySolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">linalgpy.poly.poly.</span></span><span class="sig-name descname"><span class="pre">PolySolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.matrices.dense.MutableDenseMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.core.symbol.Symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">sympy.core.expr.Expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#linalgpy.poly.poly.PolySolver" title="永久链接至目标">¶</a></dt>
+<dd><p>计算矩阵多项式的值</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mat</strong> (<em>MutableDenseMatrix</em>) – 输入的矩阵</p></li>
+<li><p><strong>var</strong> (<em>Symbol</em>) – 多项式的变元</p></li>
+<li><p><strong>expr</strong> (<em>Expr</em>) – 输入的多项式</p></li>
+<li><p><strong>evaluate</strong> (<em>bool</em>) – 是否立即执行求解</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="linalgpy.poly.poly.PolySolver.toDict">
+<span class="sig-name descname"><span class="pre">toDict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#linalgpy.poly.poly.PolySolver.toDict" title="永久链接至目标">¶</a></dt>
+<dd><p>返回过程及结果，以下为返回的字典中的字段</p>
+<ul class="simple">
+<li><p>mat 输入的矩阵</p></li>
+<li><p>matPoly 输入的多项式</p></li>
+<li><p>subPoly 代入矩阵值的多项式</p></li>
+<li><p>result 对应mat的标准形</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">linalgpy</a></h1>
+
+
+
+
+
+
+
+
+<h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#core">core – 核心模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#determinant">determinant – 行列式模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linequ">linequ – 线性方程模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linspace">linspace – 向量空间模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eigen">eigen – 特征值模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metric">metric – 度量空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quad">quad – 二次型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#poly">poly – 多项式</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="上一章">introduction</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, HelloMrGeorge.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
